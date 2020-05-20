@@ -12,12 +12,12 @@ import javax.swing.ImageIcon;
  *
  * @author LongLD
  */
-public class addMember extends javax.swing.JInternalFrame {
+public class AddMember extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form addMember
      */
-    public addMember() {
+    public AddMember() {
         initComponents();
     }
 

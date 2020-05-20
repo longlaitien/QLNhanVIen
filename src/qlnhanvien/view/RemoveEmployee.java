@@ -9,12 +9,12 @@ package qlnhanvien.view;
  *
  * @author LongLD
  */
-public class removeMember extends javax.swing.JInternalFrame {
+public class RemoveEmployee extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form removeMember
      */
-    public removeMember() {
+    public RemoveEmployee() {
         initComponents();
     }
 

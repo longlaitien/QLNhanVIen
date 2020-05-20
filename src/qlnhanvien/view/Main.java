@@ -18,11 +18,11 @@ import javax.swing.ImageIcon;
  *
  * @author LongLD
  */
-public class giaoDienChinh extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
     /**
      * Creates new form giaoDienChinh
      */
-    public giaoDienChinh() {
+    public Main() {
         initComponents();
     }
 
@@ -186,7 +186,7 @@ public class giaoDienChinh extends javax.swing.JFrame {
         for (JInternalFrame removeMember : hinhnen.getAllFrames()) {
             removeMember.dispose();
 }
-        removeMember rem=new removeMember();
+        RemoveEmployee rem=new RemoveEmployee();
         rem.setTitle("Add new Member");
         rem.setLocation(this.getWidth()/2 - rem.getWidth()/2,(this.getHeight()-20)/2 - rem.getHeight()/2 - 20);
         hinhnen.add(rem);
@@ -207,7 +207,7 @@ public class giaoDienChinh extends javax.swing.JFrame {
         for (JInternalFrame addMember : hinhnen.getAllFrames()) {
         addMember.dispose();
 }
-        addMember addm=new addMember();
+        AddMember addm=new AddMember();
         addm.setLocation(this.getWidth()/2 - addm.getWidth()/2,(this.getHeight()-20)/2 - addm.getHeight()/2 - 20);
         hinhnen.add(addm);
         addm.setVisible(true);
@@ -228,20 +228,20 @@ public class giaoDienChinh extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(giaoDienChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(giaoDienChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(giaoDienChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(giaoDienChinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                giaoDienChinh gdc =new giaoDienChinh();
+//                Main gdc =new Main();
 //                gdc.setLocationRelativeTo(null);
 //                gdc.setVisible(true);
 //            }

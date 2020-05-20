@@ -106,7 +106,7 @@ public class Login_View extends javax.swing.JFrame {
 
         boolean check = dal.getResult(user, password);
         if (check == true) {
-            giaoDienChinh gdc = new giaoDienChinh();
+            Main gdc = new Main();
             gdc.setVisible(true);
             this.dispose();
         } else {

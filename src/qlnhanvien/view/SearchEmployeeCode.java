@@ -9,12 +9,12 @@ package qlnhanvien.view;
  *
  * @author LongLD
  */
-public class timKiemTheoMaNV extends javax.swing.JInternalFrame {
+public class SearchEmployeeCode extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form timKiemTheoMaNV
      */
-    public timKiemTheoMaNV() {
+    public SearchEmployeeCode() {
         initComponents();
     }
 

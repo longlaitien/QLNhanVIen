@@ -9,12 +9,12 @@ package qlnhanvien.view;
  *
  * @author LongLD
  */
-public class hienThiDanhSachTheoBoPhan extends javax.swing.JInternalFrame {
+public class ShowListeEmployeeDepartment extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form hienThiDanhSachTheoPhongBan
      */
-    public hienThiDanhSachTheoBoPhan() {
+    public ShowListeEmployeeDepartment() {
         initComponents();
     }
 
