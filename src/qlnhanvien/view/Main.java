@@ -39,18 +39,19 @@ public class Main extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         hinhnen = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu(){};
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        mn_Option = new javax.swing.JMenu(){};
+        mnItem_Print = new javax.swing.JMenuItem();
+        mnItem_Exit = new javax.swing.JMenuItem();
+        mn_Employee = new javax.swing.JMenu();
+        mnItem_AddEmployee = new javax.swing.JMenuItem();
+        mnItem_DeleteEmployee = new javax.swing.JMenuItem();
+        mnItem_UpdateEmployee = new javax.swing.JMenuItem();
+        mn_SearchEmployee = new javax.swing.JMenu();
+        mnItem_SearchEmployee = new javax.swing.JMenuItem();
+        mn_ListEmployee = new javax.swing.JMenu();
+        mnItem_ListAllEmployee = new javax.swing.JMenuItem();
+        mnItem_ListEmployeeDepartment = new javax.swing.JMenuItem();
+        mn_Logout = new javax.swing.JMenu();
 
         jMenuItem7.setText("jMenuItem7");
 
@@ -59,109 +60,112 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý nhân viên");
 
-        hinhnen.setBackground(new java.awt.Color(248, 219, 230));
+        hinhnen.setBackground(new java.awt.Color(153, 153, 153));
+        hinhnen.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
 
         javax.swing.GroupLayout hinhnenLayout = new javax.swing.GroupLayout(hinhnen);
         hinhnen.setLayout(hinhnenLayout);
         hinhnenLayout.setHorizontalGroup(
             hinhnenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1186, Short.MAX_VALUE)
+            .addGap(0, 1184, Short.MAX_VALUE)
         );
         hinhnenLayout.setVerticalGroup(
             hinhnenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(247, 247, 247));
-        jMenuBar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jMenuBar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(318, 30));
 
-        jMenu1.setText("Tùy chọn");
-        jMenu1.setFocusable(false);
-        jMenu1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        mn_Option.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
+        mn_Option.setText("Tùy chọn");
+        mn_Option.setFocusable(false);
+        mn_Option.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jMenuItem4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jMenuItem4.setText("Print");
-        jMenuItem4.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenu1.add(jMenuItem4);
+        mnItem_Print.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        mnItem_Print.setText("Print");
+        mnItem_Print.setPreferredSize(new java.awt.Dimension(240, 40));
+        mn_Option.add(mnItem_Print);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem5.setText("Exit");
-        jMenuItem5.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mnItem_Exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        mnItem_Exit.setText("Exit");
+        mnItem_Exit.setPreferredSize(new java.awt.Dimension(240, 40));
+        mn_Option.add(mnItem_Exit);
+
+        jMenuBar1.add(mn_Option);
+
+        mn_Employee.setText("Nhân viên");
+        mn_Employee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        mnItem_AddEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        mnItem_AddEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icadd.png"))); // NOI18N
+        mnItem_AddEmployee.setText("Thêm nhân viên");
+        mnItem_AddEmployee.setPreferredSize(new java.awt.Dimension(240, 40));
+        mnItem_AddEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mnItem_AddEmployeeActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        mn_Employee.add(mnItem_AddEmployee);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Nhân viên");
-        jMenu2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icadd.png"))); // NOI18N
-        jMenuItem1.setText("Thêm nhân viên");
-        jMenuItem1.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnItem_DeleteEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        mnItem_DeleteEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icdelete.png"))); // NOI18N
+        mnItem_DeleteEmployee.setText("Xóa nhân viên");
+        mnItem_DeleteEmployee.setPreferredSize(new java.awt.Dimension(240, 40));
+        mnItem_DeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnItem_DeleteEmployeeActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        mn_Employee.add(mnItem_DeleteEmployee);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icdelete.png"))); // NOI18N
-        jMenuItem2.setText("Xóa nhân viên");
-        jMenuItem2.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnItem_UpdateEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        mnItem_UpdateEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icedit.png"))); // NOI18N
+        mnItem_UpdateEmployee.setText("Sửa thông tin NV");
+        mnItem_UpdateEmployee.setPreferredSize(new java.awt.Dimension(240, 40));
+        mnItem_UpdateEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnItem_UpdateEmployeeActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        mn_Employee.add(mnItem_UpdateEmployee);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icedit.png"))); // NOI18N
-        jMenuItem3.setText("Sửa thông tin NV");
-        jMenuItem3.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
+        jMenuBar1.add(mn_Employee);
 
-        jMenuBar1.add(jMenu2);
+        mn_SearchEmployee.setText("Tìm kiếm");
+        mn_SearchEmployee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jMenu3.setText("Tìm kiếm");
-        jMenu3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        mnItem_SearchEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        mnItem_SearchEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icsearch.png"))); // NOI18N
+        mnItem_SearchEmployee.setText("Tìm nhân viên");
+        mnItem_SearchEmployee.setPreferredSize(new java.awt.Dimension(240, 40));
+        mn_SearchEmployee.add(mnItem_SearchEmployee);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icsearch.png"))); // NOI18N
-        jMenuItem6.setText("Tìm nhân viên");
-        jMenuItem6.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenu3.add(jMenuItem6);
+        jMenuBar1.add(mn_SearchEmployee);
 
-        jMenuBar1.add(jMenu3);
+        mn_ListEmployee.setText("Danh sách nhân viên");
+        mn_ListEmployee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jMenu5.setBackground(new java.awt.Color(149, 37, 37));
-        jMenu5.setText("Danh sách nhân viên");
-        jMenu5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        mnItem_ListAllEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mnItem_ListAllEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iclist.png"))); // NOI18N
+        mnItem_ListAllEmployee.setLabel("Danh sách nhân viên");
+        mnItem_ListAllEmployee.setPreferredSize(new java.awt.Dimension(240, 40));
+        mn_ListEmployee.add(mnItem_ListAllEmployee);
 
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iclist.png"))); // NOI18N
-        jMenuItem9.setText("Danh sách tất cả nhân viên");
-        jMenuItem9.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenu5.add(jMenuItem9);
+        mnItem_ListEmployeeDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iclist.png"))); // NOI18N
+        mnItem_ListEmployeeDepartment.setText("Danh sách theo bộ phận");
+        mnItem_ListEmployeeDepartment.setPreferredSize(new java.awt.Dimension(240, 40));
+        mn_ListEmployee.add(mnItem_ListEmployeeDepartment);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iclist.png"))); // NOI18N
-        jMenuItem10.setText("Danh sách theo bộ phận");
-        jMenuItem10.setPreferredSize(new java.awt.Dimension(240, 40));
-        jMenu5.add(jMenuItem10);
+        jMenuBar1.add(mn_ListEmployee);
 
-        jMenuBar1.add(jMenu5);
+        mn_Logout.setText("Đăng xuất");
+        mn_Logout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        mn_Logout.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        mn_Logout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mn_Logout.setName("mnLogout"); // NOI18N
+        jMenuBar1.add(mn_Logout);
 
         setJMenuBar(jMenuBar1);
 
@@ -181,7 +185,7 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnItem_DeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_DeleteEmployeeActionPerformed
         // TODO add your handling code here:
         for (JInternalFrame removeMember : hinhnen.getAllFrames()) {
             removeMember.dispose();
@@ -191,18 +195,13 @@ public class Main extends javax.swing.JFrame {
         rem.setLocation(this.getWidth()/2 - rem.getWidth()/2,(this.getHeight()-20)/2 - rem.getHeight()/2 - 20);
         hinhnen.add(rem);
         rem.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mnItem_DeleteEmployeeActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mnItem_UpdateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_UpdateEmployeeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mnItem_UpdateEmployeeActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnItem_AddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_AddEmployeeActionPerformed
         // TODO add your handling code here:
         for (JInternalFrame addMember : hinhnen.getAllFrames()) {
         addMember.dispose();
@@ -211,7 +210,7 @@ public class Main extends javax.swing.JFrame {
         addm.setLocation(this.getWidth()/2 - addm.getWidth()/2,(this.getHeight()-20)/2 - addm.getHeight()/2 - 20);
         hinhnen.add(addm);
         addm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnItem_AddEmployeeActionPerformed
         
         
 //    public static void main(String args[]) {
@@ -250,20 +249,21 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane hinhnen;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem mnItem_AddEmployee;
+    private javax.swing.JMenuItem mnItem_DeleteEmployee;
+    private javax.swing.JMenuItem mnItem_Exit;
+    private javax.swing.JMenuItem mnItem_ListAllEmployee;
+    private javax.swing.JMenuItem mnItem_ListEmployeeDepartment;
+    private javax.swing.JMenuItem mnItem_Print;
+    private javax.swing.JMenuItem mnItem_SearchEmployee;
+    private javax.swing.JMenuItem mnItem_UpdateEmployee;
+    private javax.swing.JMenu mn_Employee;
+    private javax.swing.JMenu mn_ListEmployee;
+    private javax.swing.JMenu mn_Logout;
+    private javax.swing.JMenu mn_Option;
+    private javax.swing.JMenu mn_SearchEmployee;
     // End of variables declaration//GEN-END:variables
 }
