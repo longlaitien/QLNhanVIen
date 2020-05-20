@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/giaoDienChinh.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/hienThiDanhSachTheoBoPhan.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/timKiemTheoTenNV.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/removeMember.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/hinhChayCT.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/timKiemTheoMaNV.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/addMember.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/timKiemTheoTinhThanh.java</file>
-            <file>file:/E:/java/QuanLyNhanVienJV/src/GUI/hienThiDanhSachNhanVien.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/controller/Login_Controller.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/controller/SQLConnect.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/dal/Login_DAL.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/model/Login_Model.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/view/giaoDienChinh.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/view/Login_View.java</file>
         </group>
     </open-files>
 </project-private>

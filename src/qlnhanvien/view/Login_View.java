@@ -5,6 +5,10 @@
  */
 package qlnhanvien.view;
 
+import javax.swing.JOptionPane;
+import qlnhanvien.controller.Login_Controller;
+import qlnhanvien.dal.Login_DAL;
+
 /**
  *
  * @author nhatnguyen
@@ -14,8 +18,12 @@ public class Login_View extends javax.swing.JFrame {
     /**
      * Creates new form Login_View
      */
+    Login_Controller contr;
+    Login_DAL dal;
+
     public Login_View() {
         initComponents();
+        dal = new Login_DAL();
     }
 
     /**
@@ -27,21 +35,85 @@ public class Login_View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtUserName = new javax.swing.JTextField();
+        lbTendangnhap = new javax.swing.JLabel();
+        lbMatkhau = new javax.swing.JLabel();
+        btnDangNhap = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lbTendangnhap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbTendangnhap.setText("Username:");
+
+        lbMatkhau.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbMatkhau.setText("Password:");
+
+        btnDangNhap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDangNhap.setText("Login");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Login");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDangNhap)
+                    .addComponent(lbMatkhau)
+                    .addComponent(lbTendangnhap)
+                    .addComponent(txtUserName)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(txtPassword))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(lbTendangnhap)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(lbMatkhau)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        String user = txtUserName.getText();
+        String password = new String(txtPassword.getPassword());
+
+        boolean check = dal.getResult(user, password);
+        if (check == true) {
+            giaoDienChinh gdc = new giaoDienChinh();
+            gdc.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Thong tin sai!");
+        }
+
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,13 +143,17 @@ public class Login_View extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login_View().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login_View().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lbMatkhau;
+    private javax.swing.JLabel lbTendangnhap;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }
