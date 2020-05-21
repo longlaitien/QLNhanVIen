@@ -5,7 +5,7 @@
  */
 package qlnhanvien.model;
 
-import qlnhanvien.controller.SQLConnect;
+import qlnhanvien.dal.SQLConnect;
 
 /**
  *

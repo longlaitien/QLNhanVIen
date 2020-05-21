@@ -6,12 +6,14 @@
 package qlnhanvien.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,11 +21,14 @@ import javax.swing.ImageIcon;
  * @author LongLD
  */
 public class Main extends javax.swing.JFrame {
+
     /**
      * Creates new form giaoDienChinh
      */
     public Main() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
 
     /**
@@ -189,10 +194,10 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         for (JInternalFrame removeMember : hinhnen.getAllFrames()) {
             removeMember.dispose();
-}
-        RemoveEmployee rem=new RemoveEmployee();
+        }
+        RemoveEmployee rem = new RemoveEmployee();
         rem.setTitle("Add new Member");
-        rem.setLocation(this.getWidth()/2 - rem.getWidth()/2,(this.getHeight()-20)/2 - rem.getHeight()/2 - 20);
+        rem.setLocation(this.getWidth() / 2 - rem.getWidth() / 2, (this.getHeight() - 20) / 2 - rem.getHeight() / 2 - 20);
         hinhnen.add(rem);
         rem.setVisible(true);
     }//GEN-LAST:event_mnItem_DeleteEmployeeActionPerformed
@@ -203,16 +208,23 @@ public class Main extends javax.swing.JFrame {
 
     private void mnItem_AddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_AddEmployeeActionPerformed
         // TODO add your handling code here:
-        for (JInternalFrame addMember : hinhnen.getAllFrames()) {
-        addMember.dispose();
-}
-        AddMember addm=new AddMember();
-        addm.setLocation(this.getWidth()/2 - addm.getWidth()/2,(this.getHeight()-20)/2 - addm.getHeight()/2 - 20);
-        hinhnen.add(addm);
-        addm.setVisible(true);
+//        for (JInternalFrame addMember : hinhnen.getAllFrames()) {
+//            addMember.dispose();
+//        }
+//        AddMember addm = new AddMember();
+//        addm.setLocation(this.getWidth() / 2 - addm.getWidth() / 2, (this.getHeight() - 20) / 2 - addm.getHeight() / 2 - 20);
+//        hinhnen.add(addm);
+//        addm.setVisible(true);
+//        
+        for (JInternalFrame add : hinhnen.getAllFrames()) {
+            add.dispose();
+        }
+        add a = new add();
+        a.setLocation(this.getWidth() / 2 - a.getWidth() / 2, (this.getHeight() - 20) / 2 - a.getHeight() / 2 - 20);
+        hinhnen.add(a);
+        a.setVisible(true);
     }//GEN-LAST:event_mnItem_AddEmployeeActionPerformed
-        
-        
+
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

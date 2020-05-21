@@ -5,9 +5,11 @@
  */
 package qlnhanvien.view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import qlnhanvien.controller.Login_Controller;
 import qlnhanvien.dal.Login_DAL;
+import qlnhanvien.controller.LoginController;
 
 /**
  *
@@ -18,12 +20,14 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    Login_Controller contr;
-    Login_DAL dal;
+    Login_DAL contr;
+    LoginController dal;
 
     public Login() {
         initComponents();
-        dal = new Login_DAL();
+        dal = new LoginController();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
 
     /**
@@ -110,7 +114,7 @@ public class Login extends javax.swing.JFrame {
             gdc.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Thong tin sai!");
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu sai, nhập lại!");
         }
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
