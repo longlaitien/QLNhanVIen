@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    //nguyenducnhat
     Login_DAL contr;
     LoginController dal;
 
