@@ -8,6 +8,7 @@ package qlnhanvien.controller;
 import java.util.ArrayList;
 import qlnhanvien.dal.GetComboxBox_dal;
 import qlnhanvien.model.Chucvu_model;
+import qlnhanvien.model.NhanVien_model;
 import qlnhanvien.model.Phongban_model;
 import qlnhanvien.model.Trinhdo_model;
 import qlnhanvien.view.add1;
@@ -33,6 +34,10 @@ public class Combo_controller {
     
     public ArrayList<Trinhdo_model> getCombo_TrinhDo(){      
         return cbo.Combo_TrinhDo();
+    }
+    
+     public ArrayList<NhanVien_model> getDataTable(){      
+        return cbo.DataTable();
     }
     
 }
