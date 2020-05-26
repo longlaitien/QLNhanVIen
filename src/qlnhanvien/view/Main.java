@@ -207,57 +207,42 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_mnItem_UpdateEmployeeActionPerformed
 
     private void mnItem_AddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_AddEmployeeActionPerformed
-        // TODO add your handling code here:
-//        for (JInternalFrame addMember : hinhnen.getAllFrames()) {
-//            addMember.dispose();
-//        }
-//        AddMember addm = new AddMember();
-//        addm.setLocation(this.getWidth() / 2 - addm.getWidth() / 2, (this.getHeight() - 20) / 2 - addm.getHeight() / 2 - 20);
-//        hinhnen.add(addm);
-//        addm.setVisible(true);
-//        
-        for (JInternalFrame add : hinhnen.getAllFrames()) {
-            add.dispose();
-        }
-        add a = new add();
-        a.setLocation(this.getWidth() / 2 - a.getWidth() / 2, (this.getHeight() - 20) / 2 - a.getHeight() / 2 - 20);
-        hinhnen.add(a);
-        a.setVisible(true);
+
     }//GEN-LAST:event_mnItem_AddEmployeeActionPerformed
 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                Main gdc =new Main();
-//                gdc.setLocationRelativeTo(null);
-//                gdc.setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Main gdc =new Main();
+                gdc.setLocationRelativeTo(null);
+                gdc.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane hinhnen;

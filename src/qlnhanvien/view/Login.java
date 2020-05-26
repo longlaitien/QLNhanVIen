@@ -8,8 +8,8 @@ package qlnhanvien.view;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import qlnhanvien.dal.Login_DAL;
-import qlnhanvien.controller.LoginController;
+import qlnhanvien.dal.Login_dal;
+import qlnhanvien.controller.Login_controller;
 
 /**
  *
@@ -21,12 +21,12 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     //nguyenducnhat
-    Login_DAL contr;
-    LoginController dal;
+    Login_dal contr;
+    Login_controller dal;
 
     public Login() {
         initComponents();
-        dal = new LoginController();
+        dal = new Login_controller();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
@@ -111,8 +111,8 @@ public class Login extends javax.swing.JFrame {
 
         boolean check = dal.getResult(user, password);
         if (check == true) {
-            Main gdc = new Main();
-            gdc.setVisible(true);
+            test t = new test();
+            t.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu sai, nhập lại!");

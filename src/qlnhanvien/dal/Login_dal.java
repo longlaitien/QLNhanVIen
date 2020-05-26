@@ -12,25 +12,25 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import qlnhanvien.model.Login_Model;
+import qlnhanvien.model.Login_model;
 
 /**
  *
  * @author nhatnguyen
  */
-public class Login_DAL {
-
-    public Login_DAL() {
+public class Login_dal {
+    Statement stm;
+    public Login_dal() {
     }
 
-    public ArrayList<Login_Model> getLogin(String user,String pw) {
-        Login_Model model = new Login_Model();
-        ArrayList<Login_Model> listModel = new ArrayList<>();
+    public ArrayList<Login_model> getLogin(String user,String pw) {
+        Login_model model = new Login_model();
+        ArrayList<Login_model> listModel = new ArrayList<>();
         
         String sql = "SELECT * FROM Login WHERE username='" + user + "' and password='"+pw+"'";
         try {
 
-            Statement stm = SQLConnect.DBConnect().createStatement();
+            stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
                 while (rs.next()) {
                 model.setUsername(rs.getString("username"));
@@ -42,12 +42,13 @@ public class Login_DAL {
         }
         return listModel;
     }
+    
 
 //    public static void main(String[] args) {
-//        Login_DAL obj = new Login_DAL();
+//        Login_dal obj = new Login_dal();
 //        ArrayList<Login_Model> list = new ArrayList<>();
 //        list = obj.getLogin("admin", "admin");
-//        for(Login_Model lg : list){
+//        for(Login_model lg : list){
 //            System.out.println(lg.getUsername());
 //            System.out.println(lg.getPassword());
 //        }

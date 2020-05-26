@@ -7,24 +7,24 @@ package qlnhanvien.controller;
 
 import java.sql.Statement;
 import java.util.ArrayList;
-import qlnhanvien.dal.Login_DAL;
+import qlnhanvien.dal.Login_dal;
 import qlnhanvien.dal.SQLConnect;
-import qlnhanvien.model.Login_Model;
+import qlnhanvien.model.Login_model;
 
 /**
  *
  * @author nhatnguyen
  */
-public class LoginController {
-    Login_DAL login;
+public class Login_controller {
+    Login_dal login;
 
-    public LoginController() {
-        login = new Login_DAL();
+    public Login_controller() {
+        login = new Login_dal();
     }
     public boolean getResult(String user, String pw){
-        ArrayList<Login_Model> list = new ArrayList<>();
+        ArrayList<Login_model> list = new ArrayList<>();
         list=login.getLogin(user,pw);
-        for(Login_Model l : list){
+        for(Login_model l : list){
             if(user.equals(l.getUsername().trim()) && pw.equals(l.getPassword().trim())){
                 return true;
             }

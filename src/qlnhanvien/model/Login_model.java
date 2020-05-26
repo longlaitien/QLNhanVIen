@@ -11,12 +11,12 @@ import qlnhanvien.dal.SQLConnect;
  *
  * @author nhatnguyen
  */
-public class Login_Model {
+public class Login_model {
 
     private String username;
     private String password;
     private int role;
-    public Login_Model() {
+    public Login_model() {
     }
 
     public String getUsername() {
