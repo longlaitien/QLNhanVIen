@@ -32,7 +32,7 @@ public class Main extends javax.swing.JFrame {
     public static String quequan, gioitinh, dantoc, sodt;
     public static String heso, luongcb;
     public static String image, mapb, macv, matdhv;
-    
+
     DefaultTableModel model;
     NhanVien_Controller nv;
 
@@ -162,6 +162,11 @@ public class Main extends javax.swing.JFrame {
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icsearch.png"))); // NOI18N
         btnSearch.setText("Tìm kiếm");
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSearchMouseClicked(evt);
+            }
+        });
 
         btnReset.setText("Reset");
         btnReset.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -611,47 +616,149 @@ public class Main extends javax.swing.JFrame {
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
         int selectRow = tblNhanVien.getSelectedRow();
-        manv = tblNhanVien.getValueAt(selectRow, 0).toString();
-        hoten = tblNhanVien.getValueAt(selectRow, 1).toString();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa \"" + hoten + "\" khỏi danh sách không?", "Xác nhận", dialogButton);
+        if (selectRow >= 0) {
+            manv = tblNhanVien.getValueAt(selectRow, 0).toString();
+            hoten = tblNhanVien.getValueAt(selectRow, 1).toString();
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn xóa \"" + hoten + "\" khỏi danh sách không?", "Xác nhận", dialogButton);
 
-        if (dialogResult == JOptionPane.YES_NO_OPTION) {
-            int rowDeleted = nv.DeleteNV(manv);
-            if (rowDeleted > 0) {
-                JOptionPane.showMessageDialog(rootPane, "Xóa nhân viên thành công");
-                DataTable();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Xóa nhân viên thất bại");
+            if (dialogResult == JOptionPane.YES_NO_OPTION) {
+                int rowDeleted = nv.DeleteNV(manv);
+                if (rowDeleted > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Xóa nhân viên thành công");
+                    DataTable();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Xóa nhân viên thất bại");
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Click vào nhân viên trên bảng để thực hiện chức năng này!");
         }
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
         int selectRow = tblNhanVien.getSelectedRow();
-        manv = tblNhanVien.getValueAt(selectRow, 0).toString().trim();
-        hoten = tblNhanVien.getValueAt(selectRow, 1).toString().trim();
-        ngaysinh = tblNhanVien.getValueAt(selectRow, 2).toString().trim();
-        quequan = tblNhanVien.getValueAt(selectRow, 3).toString().trim();
-        gioitinh = tblNhanVien.getValueAt(selectRow, 4).toString().trim();
-        dantoc = tblNhanVien.getValueAt(selectRow, 5).toString().trim();
-        sodt = tblNhanVien.getValueAt(selectRow, 6).toString().trim();
-        heso = tblNhanVien.getValueAt(selectRow, 7).toString().trim();
-        luongcb = tblNhanVien.getValueAt(selectRow, 8).toString().trim();
-        image = tblNhanVien.getValueAt(selectRow, 9).toString().trim();
-        mapb = tblNhanVien.getValueAt(selectRow, 10).toString().trim();
-        macv = tblNhanVien.getValueAt(selectRow, 11).toString().trim();
-        matdhv = tblNhanVien.getValueAt(selectRow, 12).toString().trim();
+        if (selectRow >= 0) {
 
-        UpdateEmployee updateEmployee = new UpdateEmployee();
-        updateEmployee.setVisible(true);
-        this.add(updateEmployee);
+            manv = tblNhanVien.getValueAt(selectRow, 0).toString().trim();
+            hoten = tblNhanVien.getValueAt(selectRow, 1).toString().trim();
+            ngaysinh = tblNhanVien.getValueAt(selectRow, 2).toString().trim();
+            quequan = tblNhanVien.getValueAt(selectRow, 3).toString().trim();
+            gioitinh = tblNhanVien.getValueAt(selectRow, 4).toString().trim();
+            dantoc = tblNhanVien.getValueAt(selectRow, 5).toString().trim();
+            sodt = tblNhanVien.getValueAt(selectRow, 6).toString().trim();
+            heso = tblNhanVien.getValueAt(selectRow, 7).toString().trim();
+            luongcb = tblNhanVien.getValueAt(selectRow, 8).toString().trim();
+            image = tblNhanVien.getValueAt(selectRow, 9).toString().trim();
+            mapb = tblNhanVien.getValueAt(selectRow, 10).toString().trim();
+            macv = tblNhanVien.getValueAt(selectRow, 11).toString().trim();
+            matdhv = tblNhanVien.getValueAt(selectRow, 12).toString().trim();
+
+            UpdateEmployee updateEmployee = new UpdateEmployee();
+            updateEmployee.setVisible(true);
+            this.add(updateEmployee);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Click vào nhân viên trên bảng để thực hiện chức năng này!");
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseClicked
         DataTable();
     }//GEN-LAST:event_btnResetMouseClicked
+
+    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
+         String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ"};
+        model = new DefaultTableModel();
+        model.setColumnIdentifiers(columns);
+        tblNhanVien.setModel(model);
+        String manv;
+        String hoten;
+        String ngaysinh;
+        String quequan;
+        String gioitinh;
+        String dantoc;
+        String sodt;
+        float heso;
+        float luongcb;
+        String image;
+        String mapb = "";
+        String macv = "";
+        String matdhv = "";
+
+        String tk_manv =txtSearch.getText();
+        try {
+
+            for (int i = 0; i <nv.TimKiem(tk_manv).size(); i++) {
+
+                manv = nv.TimKiem(tk_manv).get(i).getManv();
+                hoten = nv.TimKiem(tk_manv).get(i).getHoten();
+                ngaysinh = nv.TimKiem(tk_manv).get(i).getNgaysinh();
+                quequan = nv.TimKiem(tk_manv).get(i).getQuequan();
+                gioitinh = nv.TimKiem(tk_manv).get(i).getGioitinh();
+                sodt = nv.TimKiem(tk_manv).get(i).getSodt();
+                dantoc = nv.TimKiem(tk_manv).get(i).getDantoc();
+                heso = nv.TimKiem(tk_manv).get(i).getHeso();
+                luongcb = nv.TimKiem(tk_manv).get(i).getLuongcb();
+                image = nv.TimKiem(tk_manv).get(i).getImage();
+                
+                switch (nv.TimKiem(tk_manv).get(i).getMapb().trim()) {
+                    case "pb1":
+                        mapb = "Phòng phát triển";
+                        break;
+                    case "pb2":
+                        mapb = "Phòng nhân sự";
+                        break;
+                    case "pb3":
+                        mapb = "Phòng marketing";
+                        break;
+                    case "pb4":
+                        mapb = "Phòng kế toán";
+                        break;
+                }
+
+                switch (nv.TimKiem(tk_manv).get(i).getMacv().trim()) {
+                    case "cv1":
+                        macv = "Giám đốc";
+                        break;
+                    case "cv2":
+                        macv = "Trưởng phòng";
+                        break;
+                    case "cv3":
+                        macv = "Phó trưởng phòng";
+                        break;
+                    case "cv4":
+                        macv = "Nhân viên";
+                        break;
+                    case "cv5":
+                        macv = "Thực tập sinh";
+                        break;
+                }
+
+                switch (nv.TimKiem(tk_manv).get(i).getMatdhv().trim()) {
+                    case "td1":
+                        matdhv = "Caohọc";
+                        break;
+                    case "td2":
+                        matdhv = "Đại học";
+                        break;
+                    case "td3":
+                        matdhv = "Cao đẳng";
+                        break;
+                    case "td4":
+                        matdhv = "Trung cấp";
+                }
+
+                model.addRow(new Object[]{
+                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv
+                });
+//                System.out.println(mapb+macv+matdhv);
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_btnSearchMouseClicked
 
     /**
      * @param args the command line arguments

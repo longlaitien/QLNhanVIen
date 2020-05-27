@@ -75,7 +75,7 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtLuongCB = new javax.swing.JTextField();
         btnLuu = new javax.swing.JButton();
-        btnHủy = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         path = new javax.swing.JLabel();
 
@@ -154,7 +154,12 @@ public class AddEmployee extends javax.swing.JFrame {
             }
         });
 
-        btnHủy.setText("Hủy bỏ");
+        btnHuy.setText("Hủy bỏ");
+        btnHuy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHuyMouseClicked(evt);
+            }
+        });
 
         btnThoat.setText("Thoát");
         btnThoat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,7 +189,7 @@ public class AddEmployee extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnLuu)
                         .addGap(36, 36, 36)
-                        .addComponent(btnHủy)
+                        .addComponent(btnHuy)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThoat))
                     .addComponent(txtNgaySinh)
@@ -280,7 +285,7 @@ public class AddEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLuu)
                     .addComponent(btnThoat)
-                    .addComponent(btnHủy))
+                    .addComponent(btnHuy))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -309,6 +314,8 @@ public class AddEmployee extends javax.swing.JFrame {
         //        }
         if (n == JFileChooser.APPROVE_OPTION) {
             path.setText(selected.getName());
+        }else{
+            path.setText("null");
         }
         lbImage.setIcon(new ImageIcon(new ImageIcon(f).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -335,26 +342,42 @@ public class AddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_cboTrinhDoActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-        NhanVien_model nv = new NhanVien_model();
-        nv.setManv(txtMaNV.getText().trim());
-        nv.setHoten(txtHoTen.getText().trim());
-        nv.setNgaysinh(txtNgaySinh.getText().trim());
-        nv.setQuequan(txtQueQuan.getText().trim());
-        nv.setGioitinh(cboGioiTinh.getSelectedItem().toString().trim());
-        nv.setDantoc(cboDanToc.getSelectedItem().toString().trim());
-        nv.setSodt(txtSodt.getText().trim());
-        nv.setHeso(Float.parseFloat(cboHeSo.getSelectedItem().toString().trim()));
-        nv.setLuongcb(Float.parseFloat(txtLuongCB.getText().trim()));
-        nv.setImage(path.getText().trim());
-        nv.setMapb(phongban.trim());
-        nv.setMacv(chucvu.trim());
-        nv.setMatdhv(trinhdo.trim());
-
-        int rowInserted = nv_ct.InsertNV(nv);
-        if (rowInserted > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thành công");            
+            
+        if (txtMaNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtHoTen.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtNgaySinh.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtQueQuan.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtSodt.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtLuongCB.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thất bại");
+
+            NhanVien_model nv = new NhanVien_model();
+            nv.setManv(txtMaNV.getText().trim());
+            nv.setHoten(txtHoTen.getText().trim());
+            nv.setNgaysinh(txtNgaySinh.getText().trim());
+            nv.setQuequan(txtQueQuan.getText().trim());
+            nv.setGioitinh(cboGioiTinh.getSelectedItem().toString().trim());
+            nv.setDantoc(cboDanToc.getSelectedItem().toString().trim());
+            nv.setSodt(txtSodt.getText().trim());
+            nv.setHeso(Float.parseFloat(cboHeSo.getSelectedItem().toString().trim()));
+            nv.setLuongcb(Float.parseFloat(txtLuongCB.getText().trim()));
+            nv.setImage(path.getText().trim());
+            nv.setMapb(phongban.trim());
+            nv.setMacv(chucvu.trim());
+            nv.setMatdhv(trinhdo.trim());
+
+            int rowInserted = nv_ct.InsertNV(nv);
+            if (rowInserted > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thành công");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thất bại");
+            }
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -366,6 +389,15 @@ public class AddEmployee extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnThoatMouseClicked
+
+    private void btnHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseClicked
+        txtMaNV.setText("");
+        txtHoTen.setText("");
+        txtNgaySinh.setText("");
+        txtQueQuan.setText("");
+        txtSodt.setText("");
+        txtLuongCB.setText("");
+    }//GEN-LAST:event_btnHuyMouseClicked
 
     public void ChucVu() {
         Combo_controller cv = new Combo_controller();
@@ -386,7 +418,7 @@ public class AddEmployee extends javax.swing.JFrame {
         for (int i = 0; i < cv.getCombo_TrinhDo().size(); i++) {
             cboTrinhDo.addItem(cv.getCombo_TrinhDo().get(i).getTentd());
         }
-        
+
     }
 
     public static void main(String args[]) {
@@ -421,7 +453,7 @@ public class AddEmployee extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHủy;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnThoat;
     private javax.swing.JComboBox cboChucVu;

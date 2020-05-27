@@ -6,8 +6,16 @@
 package qlnhanvien.view;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import qlnhanvien.controller.Combo_controller;
+import qlnhanvien.controller.NhanVien_Controller;
+import qlnhanvien.model.NhanVien_model;
 
 /**
  *
@@ -15,9 +23,10 @@ import qlnhanvien.controller.Combo_controller;
  */
 public class UpdateEmployee extends javax.swing.JFrame {
 
-    String phongban;
-    String chucvu;
-    String trinhdo;
+    String phongban = null;
+    String chucvu = null;
+    String trinhdo = null;
+    NhanVien_Controller nv_ct = new NhanVien_Controller();
 
     public UpdateEmployee() {
         initComponents();
@@ -31,7 +40,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     }
 
     public void showData() {
-
+        txtMaNV.disable();
         txtMaNV.setText(Main.manv);
         txtHoTen.setText(Main.hoten);
         txtNgaySinh.setText(Main.ngaysinh);
@@ -42,7 +51,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         cboHeSo.setSelectedItem(Main.heso);
         txtLuongCB.setText(Main.luongcb);
         if (Main.image.equals("")) {
-            path.setText("Không có ảnh");
+            path.setText("null");
         } else {
             path.setText(Main.image);
         }
@@ -54,6 +63,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     }
 
     public void ChucVu2() {
+
         Combo_controller cv = new Combo_controller();
         for (int i = 0; i < cv.getCombo_ChucVu().size(); i++) {
             cboChucVu.addItem(cv.getCombo_ChucVu().get(i).getTencv());
@@ -104,7 +114,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         txtQueQuan = new javax.swing.JTextField();
         cboGioiTinh = new javax.swing.JComboBox();
         txtSodt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnChonAnh = new javax.swing.JButton();
         cboDanToc = new javax.swing.JComboBox();
         cboPhongBan = new javax.swing.JComboBox();
         cboChucVu = new javax.swing.JComboBox();
@@ -154,7 +164,12 @@ public class UpdateEmployee extends javax.swing.JFrame {
 
         cboGioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nam", "Nữ" }));
 
-        jButton1.setText("Chọn ảnh");
+        btnChonAnh.setText("Chọn ảnh");
+        btnChonAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnChonAnhMouseClicked(evt);
+            }
+        });
 
         cboDanToc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kinh", "Chứt", "Mường", "Thổ", "Bố Y", "Giáy", "Lào", "Lự", "Nùng", "Sán Chay", "Tày", "Thái", "Dao", "Mông", "Pà thẻn", "Cờ lao", "La Chí", "La ha", "Pu péo", "Chăm", "Chu-ru", "Ê đê", "Gia-rai", "Ra-glai", "Hoa", "Ngái", "Sán dìu", "Cống", "Hà nhì", "La hủ", "Lô lô", "Phù lá", "Si la" }));
 
@@ -181,10 +196,25 @@ public class UpdateEmployee extends javax.swing.JFrame {
         lbImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnLuu.setText("Lưu lại");
+        btnLuu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLuuMouseClicked(evt);
+            }
+        });
 
         btnHuy.setText("Hủy bỏ");
+        btnHuy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHuyMouseClicked(evt);
+            }
+        });
 
         btnThoat.setText("Thoát");
+        btnThoat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThoatMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +241,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(btnThoat))
                     .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnChonAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtSodt)
                     .addComponent(cboGioiTinh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtQueQuan)
@@ -284,7 +314,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jButton1)))
+                            .addComponent(btnChonAnh)))
                     .addComponent(txtLuongCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,42 +352,118 @@ public class UpdateEmployee extends javax.swing.JFrame {
         System.out.println(trinhdo);
     }//GEN-LAST:event_cboTrinhDoActionPerformed
 
+    private void btnLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLuuMouseClicked
+        if (txtMaNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtHoTen.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtNgaySinh.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtQueQuan.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtSodt.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else if (txtLuongCB.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
+        } else {
+
+            NhanVien_model nv = new NhanVien_model();
+            nv.setManv(txtMaNV.getText().trim());
+            nv.setHoten(txtHoTen.getText().trim());
+            nv.setNgaysinh(txtNgaySinh.getText().trim());
+            nv.setQuequan(txtQueQuan.getText().trim());
+            nv.setGioitinh(cboGioiTinh.getSelectedItem().toString().trim());
+            nv.setDantoc(cboDanToc.getSelectedItem().toString().trim());
+            nv.setSodt(txtSodt.getText().trim());
+            nv.setHeso(Float.parseFloat(cboHeSo.getSelectedItem().toString().trim()));
+            nv.setLuongcb(Float.parseFloat(txtLuongCB.getText().trim()));
+            nv.setImage(path.getText().trim());
+            nv.setMapb(phongban.trim());
+            nv.setMacv(chucvu.trim());
+            nv.setMatdhv(trinhdo.trim());
+
+            int rowInserted = nv_ct.UpdateNV(nv);
+            if (rowInserted > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Sửa thông tin nhân viên thành công");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Sửa thông tin nhân viên thất bại!");
+            }
+        }
+    }//GEN-LAST:event_btnLuuMouseClicked
+
+    private void btnChonAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonAnhMouseClicked
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FileNameExtensionFilter(
+                "Image (jpg, jpeg, png, bmp, gif)",
+                "jpg", "jpeg", "png", "bmp", "gif"
+        ));
+
+        int n = fc.showOpenDialog(null);
+        String f = fc.getSelectedFile().getAbsolutePath();
+        File selected = fc.getSelectedFile();
+        if (n == JFileChooser.APPROVE_OPTION) {
+            path.setText(selected.getName());
+        }else{
+            path.setText("null");
+        }
+        lbImage.setIcon(new ImageIcon(new ImageIcon(f).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
+    }//GEN-LAST:event_btnChonAnhMouseClicked
+
+    private void btnHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseClicked
+        txtMaNV.setText("");
+        txtHoTen.setText("");
+        txtNgaySinh.setText("");
+        txtQueQuan.setText("");
+        txtSodt.setText("");
+        txtLuongCB.setText("");
+    }//GEN-LAST:event_btnHuyMouseClicked
+
+    private void btnThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThoatMouseClicked
+         int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(rootPane, "Bạn muốn thoát không?", "Xác nhận", dialogButton);
+
+        if (dialogResult == JOptionPane.YES_NO_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnThoatMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UpdateEmployee().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(UpdateEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UpdateEmployee().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChonAnh;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnThoat;
@@ -367,7 +473,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JComboBox cboHeSo;
     private javax.swing.JComboBox cboPhongBan;
     private javax.swing.JComboBox cboTrinhDo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

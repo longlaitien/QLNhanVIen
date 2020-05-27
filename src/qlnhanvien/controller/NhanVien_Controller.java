@@ -5,6 +5,7 @@
  */
 package qlnhanvien.controller;
 
+import java.util.ArrayList;
 import qlnhanvien.dal.NhanVien_DAL;
 import qlnhanvien.model.NhanVien_model;
 
@@ -19,7 +20,16 @@ public class NhanVien_Controller {
     public int InsertNV(NhanVien_model nvmodel) {
         return nv.Insert_Nhanvien(nvmodel);
     }
+    
+     public int UpdateNV(NhanVien_model nvmodel) {
+        return nv.Update_Nhanvien(nvmodel);
+    }
+     
     public int DeleteNV(String manv){
         return nv.Delete_NhanVien(manv);
+    }
+    
+    public ArrayList<NhanVien_model> TimKiem(String manv){
+        return nv.TimKiem_NhanVien(manv);
     }
 }
