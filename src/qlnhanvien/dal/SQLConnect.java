@@ -34,7 +34,7 @@ public class SQLConnect {
         }
         return null;
     }
-    
+
     public static void main(String[] args) {
         DBConnect();
     }

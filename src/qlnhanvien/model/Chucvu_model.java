@@ -10,7 +10,8 @@ package qlnhanvien.model;
  * @author nhatnguyen
  */
 public class Chucvu_model {
-    String macv,tencv;
+
+    String macv, tencv;
 
     public Chucvu_model() {
     }

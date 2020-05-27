@@ -111,8 +111,8 @@ public class Login extends javax.swing.JFrame {
 
         boolean check = dal.getResult(user, password);
         if (check == true) {
-            test t = new test();
-            t.setVisible(true);
+            Main m = new Main();
+            m.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu sai, nhập lại!");

@@ -122,7 +122,6 @@ public class RemoveEmployee extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnthoatActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnhuy;
     private javax.swing.JButton btnthoat;

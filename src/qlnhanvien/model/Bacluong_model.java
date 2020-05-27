@@ -10,6 +10,7 @@ package qlnhanvien.model;
  * @author nhatnguyen
  */
 public class Bacluong_model {
+
     String mabacluong;
     float luongcoban, hesoluong, hesophucap;
 
@@ -22,8 +23,7 @@ public class Bacluong_model {
         this.hesoluong = hesoluong;
         this.hesophucap = hesophucap;
     }
-    
-    
+
     public String getMabacluong() {
         return mabacluong;
     }
@@ -55,5 +55,5 @@ public class Bacluong_model {
     public void setHesophucap(float hesophucap) {
         this.hesophucap = hesophucap;
     }
-    
+
 }

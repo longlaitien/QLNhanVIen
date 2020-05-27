@@ -33,6 +33,7 @@ public class GetComboxBox_dal {
 
     }
 
+    //Lay du lieu bang ChucVu do vao ComboBox
     public ArrayList<Chucvu_model> Combo_ChucVu() {
         ArrayList<Chucvu_model> list = new ArrayList<>();
         String sql = "SELECT macv,tencv FROM ChucVu";
@@ -49,6 +50,7 @@ public class GetComboxBox_dal {
         return list;
     }
 
+    //Lay du lieu bang PhongBan do vao ComboBox
     public ArrayList<Phongban_model> Combo_PhongBan() {
         ArrayList<Phongban_model> list = new ArrayList<>();
         String sql = "SELECT mapb,tenpb,diachi,sodtpb FROM PhongBan";
@@ -56,7 +58,7 @@ public class GetComboxBox_dal {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"),rs.getString("diachi"),rs.getString("sodtpb"));
+                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"));
                 list.add(pb);
             }
         } catch (SQLException ex) {
@@ -64,7 +66,8 @@ public class GetComboxBox_dal {
         }
         return list;
     }
-    
+
+    //Lay du lieu bang Trinh do vao ComboBox
     public ArrayList<Trinhdo_model> Combo_TrinhDo() {
         ArrayList<Trinhdo_model> list = new ArrayList<>();
         String sql = "SELECT matdhv,tentd FROM TrinhDo";
@@ -80,20 +83,64 @@ public class GetComboxBox_dal {
         }
         return list;
     }
-    
-    public ArrayList<NhanVien_model> DataTable(){
+
+    //Lay du lieu do vao Table trong giao dien chinh
+    public ArrayList<NhanVien_model> DataTable() {
         ArrayList<NhanVien_model> list = new ArrayList<>();
-        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, image, mapb, macv, matdhv FROM NhanVien WHERE trangthai = 1";
+        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv FROM NhanVien WHERE trangthai = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
-            while(rs.next()){
-                nv = new NhanVien_model(rs.getString("manv"),rs.getString("hoten"),rs.getString("ngaysinh"),rs.getString("quequan"),rs.getString("gioitinh"),rs.getString("dantoc"),rs.getString("sodt"),rs.getString("image"),rs.getString("mapb"),rs.getString("macv"),rs.getString("matdhv"));
+            while (rs.next()) {
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"));
                 list.add(nv);
             }
         } catch (SQLException e) {
         }
         return list;
+    }
+
+    public String pb(String tenpb) {
+        String cboPhongBan = "";
+        String sql = "SELECT mapb FROM PhongBan WHERE tenpb=N'" + tenpb + "'";
+        try {
+            Statement stm = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                cboPhongBan = rs.getString("mapb");
+            }
+        } catch (Exception e) {
+        }
+        return cboPhongBan;
+
+    }
+
+    public String cv(String tencv) {
+        String cboChucVu = "";
+        String sql = "SELECT macv FROM ChucVu WHERE tencv=N'" + tencv + "'";
+        try {
+            Statement stm = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                cboChucVu = rs.getString("macv");
+            }
+        } catch (Exception e) {
+        }
+        return cboChucVu;
+    }
+
+    public String td(String tentd) {
+        String cboTrinhDo = "";
+        String sql = "SELECT matdhv FROM TrinhDo WHERE tentd=N'" + tentd + "'";
+        try {
+            Statement stm = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                cboTrinhDo = rs.getString("matdhv");
+            }
+        } catch (Exception e) {
+        }
+        return cboTrinhDo;
     }
 //    
 //    public static void main(String[] args) {

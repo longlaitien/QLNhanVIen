@@ -10,7 +10,8 @@ package qlnhanvien.model;
  * @author nhatnguyen
  */
 public class Phongban_model {
-    String mapb,tenpb,diachi,sodtpb;
+
+    String mapb, tenpb, diachi, sodtpb;
 
     public Phongban_model() {
     }

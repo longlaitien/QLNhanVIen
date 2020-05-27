@@ -5,15 +5,24 @@
  */
 package qlnhanvien.model;
 
+import java.util.Date;
+
 /**
  *
  * @author nhatnguyen
  */
 public class NhanVien_model {
 
-    String manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, image, mapb, macv, matdhv;
+    String manv, hoten;
+    String ngaysinh;
+    String quequan, gioitinh, dantoc, sodt;
+    float heso, luongcb;
+    String image, mapb, macv, matdhv;
 
-    public NhanVien_model(String manv, String hoten, String ngaysinh, String quequan, String gioitinh, String dantoc, String sodt, String image, String mapb, String macv, String matdhv) {
+    public NhanVien_model() {
+    }
+
+    public NhanVien_model(String manv, String hoten, String ngaysinh, String quequan, String gioitinh, String dantoc, String sodt, float heso, float luongcb, String image, String mapb, String macv, String matdhv) {
         this.manv = manv;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -21,21 +30,20 @@ public class NhanVien_model {
         this.gioitinh = gioitinh;
         this.dantoc = dantoc;
         this.sodt = sodt;
+        this.heso = heso;
+        this.luongcb = luongcb;
         this.image = image;
         this.mapb = mapb;
         this.macv = macv;
         this.matdhv = matdhv;
     }
 
-    public NhanVien_model() {
-    }
-
     public String getManv() {
         return manv;
     }
 
-    public void setManv(String manvString) {
-        this.manv = manvString;
+    public void setManv(String manv) {
+        this.manv = manv;
     }
 
     public String getHoten() {
@@ -84,6 +92,22 @@ public class NhanVien_model {
 
     public void setSodt(String sodt) {
         this.sodt = sodt;
+    }
+
+    public float getHeso() {
+        return heso;
+    }
+
+    public void setHeso(float heso) {
+        this.heso = heso;
+    }
+
+    public float getLuongcb() {
+        return luongcb;
+    }
+
+    public void setLuongcb(float luongcb) {
+        this.luongcb = luongcb;
     }
 
     public String getImage() {

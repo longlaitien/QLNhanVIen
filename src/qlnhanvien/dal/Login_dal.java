@@ -19,20 +19,22 @@ import qlnhanvien.model.Login_model;
  * @author nhatnguyen
  */
 public class Login_dal {
+
     Statement stm;
+
     public Login_dal() {
     }
 
-    public ArrayList<Login_model> getLogin(String user,String pw) {
+    public ArrayList<Login_model> getLogin(String user, String pw) {
         Login_model model = new Login_model();
         ArrayList<Login_model> listModel = new ArrayList<>();
-        
-        String sql = "SELECT * FROM Login WHERE username='" + user + "' and password='"+pw+"'";
+
+        String sql = "SELECT * FROM Login WHERE username='" + user + "' and password='" + pw + "'";
         try {
 
             stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
-                while (rs.next()) {
+            while (rs.next()) {
                 model.setUsername(rs.getString("username"));
                 model.setPassword(rs.getString("password"));
                 listModel.add(model);
@@ -42,7 +44,6 @@ public class Login_dal {
         }
         return listModel;
     }
-    
 
 //    public static void main(String[] args) {
 //        Login_dal obj = new Login_dal();

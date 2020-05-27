@@ -11,33 +11,46 @@ import qlnhanvien.model.Chucvu_model;
 import qlnhanvien.model.NhanVien_model;
 import qlnhanvien.model.Phongban_model;
 import qlnhanvien.model.Trinhdo_model;
-import qlnhanvien.view.add1;
+import qlnhanvien.view.AddEmployee;
 
 /**
  *
  * @author nhatnguyen
  */
 public class Combo_controller {
-    GetComboxBox_dal  cbo;
+
+    GetComboxBox_dal cbo;
 
     public Combo_controller() {
         cbo = new GetComboxBox_dal();
     }
-    
-    public ArrayList<Chucvu_model> getCombo_ChucVu(){      
+
+    public ArrayList<Chucvu_model> getCombo_ChucVu() {
         return cbo.Combo_ChucVu();
     }
-    
-    public ArrayList<Phongban_model> getCombo_PhongBan(){      
+
+    public ArrayList<Phongban_model> getCombo_PhongBan() {
         return cbo.Combo_PhongBan();
     }
-    
-    public ArrayList<Trinhdo_model> getCombo_TrinhDo(){      
+
+    public ArrayList<Trinhdo_model> getCombo_TrinhDo() {
         return cbo.Combo_TrinhDo();
     }
-    
-     public ArrayList<NhanVien_model> getDataTable(){      
+
+    public ArrayList<NhanVien_model> getDataTable() {
         return cbo.DataTable();
     }
-    
+
+    public String mapb(String tenpb) {
+        return cbo.pb(tenpb);
+    }
+
+    public String macv(String tencv) {
+        return cbo.cv(tencv);
+    }
+
+    public String matdhv(String tentd) {
+        return cbo.td(tentd);
+    }
+
 }

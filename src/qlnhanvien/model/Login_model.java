@@ -16,6 +16,7 @@ public class Login_model {
     private String username;
     private String password;
     private int role;
+
     public Login_model() {
     }
 
