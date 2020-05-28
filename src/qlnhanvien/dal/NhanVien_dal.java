@@ -93,7 +93,7 @@ public class NhanVien_dal {
         NhanVien_model nv = new NhanVien_model();
         ArrayList<NhanVien_model> listModel = new ArrayList<>();
 
-        String sql = "SELECT * FROM NhanVien WHERE manv LIKE '%" + tk_nv + "%';
+        String sql = "SELECT * FROM NhanVien WHERE manv LIKE '%" + tk_nv + "%'";
         try {
             Statement stm;
             stm = SQLConnect.DBConnect().createStatement();

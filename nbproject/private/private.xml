@@ -4,9 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/view/AddEmployee.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/view/Login.java</file>
             <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/view/Main.java</file>
             <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/view/UpdateEmployee.java</file>
             <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/controller/NhanVien_Controller.java</file>
+            <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/dal/GetComboxBox_dal.java</file>
             <file>file:/C:/Users/THINKPAD/Documents/GitHub/QLNhanVien/src/qlnhanvien/dal/NhanVien_dal.java</file>
         </group>
     </open-files>

@@ -36,7 +36,18 @@ public class UpdateEmployee extends javax.swing.JFrame {
         ChucVu2();
         TrinhDo2();
         showData();
+        authen();
 
+    }
+    
+    public void authen() {
+        if (Login.role == 1) {
+            btnLuu.setEnabled(false);
+            btnHuy.setEnabled(false);
+            lbHeader.setText("THÔNG TIN NHÂN VIÊN");
+        }else{
+             
+        }
     }
 
     public void showData() {
@@ -94,7 +105,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lbHeader = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -130,12 +141,12 @@ public class UpdateEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("QUẢN LÝ NHÂN VIÊN");
 
-        jLabel1.setBackground(new java.awt.Color(0, 96, 181));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("SỬA THÔNG TIN NHÂN VIÊN");
-        jLabel1.setOpaque(true);
-        jLabel1.setPreferredSize(new java.awt.Dimension(162, 22));
+        lbHeader.setBackground(new java.awt.Color(0, 96, 181));
+        lbHeader.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbHeader.setForeground(new java.awt.Color(255, 255, 255));
+        lbHeader.setText("SỬA THÔNG TIN NHÂN VIÊN");
+        lbHeader.setOpaque(true);
+        lbHeader.setPreferredSize(new java.awt.Dimension(162, 22));
 
         jLabel2.setText("Mã nhân viên:");
 
@@ -195,19 +206,20 @@ public class UpdateEmployee extends javax.swing.JFrame {
 
         cboHeSo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "1.2", "1.4", "1.6", "1.8", "2", "2.2", "2.4", "2.6", "2.8", "3", "3.2", "3.4", "3.6", "3.8", "4" }));
 
+        lbImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnLuu.setText("Lưu lại");
-        btnLuu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLuuMouseClicked(evt);
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
             }
         });
 
         btnHuy.setText("Làm mới");
-        btnHuy.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHuyMouseClicked(evt);
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
             }
         });
 
@@ -222,7 +234,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +285,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
@@ -355,7 +367,34 @@ public class UpdateEmployee extends javax.swing.JFrame {
         System.out.println(trinhdo);
     }//GEN-LAST:event_cboTrinhDoActionPerformed
 
-    private void btnLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLuuMouseClicked
+    private void btnChonAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonAnhMouseClicked
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FileNameExtensionFilter(
+                "Image (jpg, jpeg, png, bmp, gif)",
+                "jpg", "jpeg", "png", "bmp", "gif"
+        ));
+
+        int n = fc.showOpenDialog(null);
+        String f = fc.getSelectedFile().getAbsolutePath();
+        File selected = fc.getSelectedFile();
+        if (n == JFileChooser.APPROVE_OPTION) {
+            path.setText(selected.getName());
+        }else{
+            path.setText("null");
+        }
+        lbImage.setIcon(new ImageIcon(new ImageIcon(f).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
+    }//GEN-LAST:event_btnChonAnhMouseClicked
+
+    private void btnThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThoatMouseClicked
+         int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(rootPane, "Bạn muốn thoát không?", "Xác nhận", dialogButton);
+
+        if (dialogResult == JOptionPane.YES_NO_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnThoatMouseClicked
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         if (txtMaNV.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
         } else if (txtHoTen.getText().equals("")) {
@@ -392,43 +431,15 @@ public class UpdateEmployee extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Sửa thông tin nhân viên thất bại!");
             }
         }
-    }//GEN-LAST:event_btnLuuMouseClicked
+    }//GEN-LAST:event_btnLuuActionPerformed
 
-    private void btnChonAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonAnhMouseClicked
-        JFileChooser fc = new JFileChooser();
-        fc.addChoosableFileFilter(new FileNameExtensionFilter(
-                "Image (jpg, jpeg, png, bmp, gif)",
-                "jpg", "jpeg", "png", "bmp", "gif"
-        ));
-
-        int n = fc.showOpenDialog(null);
-        String f = fc.getSelectedFile().getAbsolutePath();
-        File selected = fc.getSelectedFile();
-        if (n == JFileChooser.APPROVE_OPTION) {
-            path.setText(selected.getName());
-        }else{
-            path.setText("null");
-        }
-        lbImage.setIcon(new ImageIcon(new ImageIcon(f).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
-    }//GEN-LAST:event_btnChonAnhMouseClicked
-
-    private void btnHuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHuyMouseClicked
-
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         txtHoTen.setText("");
         txtNgaySinh.setText("");
         txtQueQuan.setText("");
         txtSodt.setText("");
         txtLuongCB.setText("");
-    }//GEN-LAST:event_btnHuyMouseClicked
-
-    private void btnThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThoatMouseClicked
-         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(rootPane, "Bạn muốn thoát không?", "Xác nhận", dialogButton);
-
-        if (dialogResult == JOptionPane.YES_NO_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnThoatMouseClicked
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -476,7 +487,6 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JComboBox cboHeSo;
     private javax.swing.JComboBox cboPhongBan;
     private javax.swing.JComboBox cboTrinhDo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -490,6 +500,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbHeader;
     private javax.swing.JLabel lbImage;
     private javax.swing.JLabel path;
     private javax.swing.JTextField txtHoTen;

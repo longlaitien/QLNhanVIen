@@ -131,6 +131,7 @@ public class AddEmployee extends javax.swing.JFrame {
 
         jLabel12.setText("Ảnh:");
 
+        lbImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Họ tên:");
