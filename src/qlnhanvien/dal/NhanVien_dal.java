@@ -18,7 +18,7 @@ import qlnhanvien.model.NhanVien_model;
  *
  * @author nhatnguyen
  */
-public class NhanVien_DAL {
+public class NhanVien_dal {
 
     public int Insert_Nhanvien(NhanVien_model nvmodel) {
         int rowInserted = 0;
@@ -41,7 +41,8 @@ public class NhanVien_DAL {
             pre.setInt(14, 1);
             rowInserted = pre.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, e);
+//            Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Mã nhân viên đã tồn tại!");
         }
         return rowInserted;
     }
@@ -88,11 +89,11 @@ public class NhanVien_DAL {
         return rowDeleted;
     }
 
-    public ArrayList<NhanVien_model> TimKiem_NhanVien(String manv) {
+    public ArrayList<NhanVien_model> TimKiem_NhanVien(String tk_nv) {
         NhanVien_model nv = new NhanVien_model();
         ArrayList<NhanVien_model> listModel = new ArrayList<>();
 
-        String sql = "SELECT * FROM NhanVien WHERE manv LIKE '%" + manv + "%'";
+        String sql = "SELECT * FROM NhanVien WHERE manv LIKE '%" + tk_nv + "%';
         try {
             Statement stm;
             stm = SQLConnect.DBConnect().createStatement();

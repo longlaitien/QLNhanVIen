@@ -37,6 +37,7 @@ public class Login_dal {
             while (rs.next()) {
                 model.setUsername(rs.getString("username"));
                 model.setPassword(rs.getString("password"));
+                model.setRole(rs.getInt("role"));
                 listModel.add(model);
             }
         } catch (SQLException ex) {

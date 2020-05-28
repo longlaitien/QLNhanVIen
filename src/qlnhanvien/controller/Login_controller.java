@@ -23,16 +23,14 @@ public class Login_controller {
         login = new Login_dal();
     }
 
-    public boolean getResult(String user, String pw) {
-        ArrayList<Login_model> list = new ArrayList<>();
-        list = login.getLogin(user, pw);
-        for (Login_model l : list) {
-            if (user.equals(l.getUsername().trim()) && pw.equals(l.getPassword().trim())) {
-                return true;
-            }
-            System.out.println(l.getUsername() + "," + l.getPassword());
-        }
-        return false;
+    public ArrayList<Login_model> getResult(String user, String pw) {
+//        for (Login_model l : list) {
+//            if (user.equals(l.getUsername().trim()) && pw.equals(l.getPassword().trim())) {
+//                return true;
+//            }
+//            System.out.println(l.getUsername() + "," + l.getPassword());
+//        }
+        return login.getLogin(user, pw);
     }
 
 }

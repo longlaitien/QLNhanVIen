@@ -35,6 +35,7 @@ public class AddEmployee extends javax.swing.JFrame {
         ChucVu();
         PhongBan();
         TrinhDo();
+        txtMaNV.setText("NV");
     }
 
     /**
@@ -80,6 +81,7 @@ public class AddEmployee extends javax.swing.JFrame {
         path = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("QUẢN LÝ NHÂN VIÊN");
 
         cboGioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nam", "Nữ" }));
 
@@ -118,7 +120,7 @@ public class AddEmployee extends javax.swing.JFrame {
         jLabel11.setText("Hệ số:");
 
         jButton1.setBackground(new java.awt.Color(0, 51, 255));
-        jButton1.setText("Chọn ảnh");
+        jButton1.setText("Chọn ảnh (Không  bắt buộc)");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,7 +156,7 @@ public class AddEmployee extends javax.swing.JFrame {
             }
         });
 
-        btnHuy.setText("Hủy bỏ");
+        btnHuy.setText("Làm mới");
         btnHuy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHuyMouseClicked(evt);
@@ -314,7 +316,7 @@ public class AddEmployee extends javax.swing.JFrame {
         //        }
         if (n == JFileChooser.APPROVE_OPTION) {
             path.setText(selected.getName());
-        }else{
+        } else {
             path.setText("null");
         }
         lbImage.setIcon(new ImageIcon(new ImageIcon(f).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
@@ -324,25 +326,36 @@ public class AddEmployee extends javax.swing.JFrame {
         Combo_controller cv = new Combo_controller();
         String tenpb = cboPhongBan.getSelectedItem().toString().trim();
         phongban = cv.mapb(tenpb);
-        System.out.println(phongban);
+        //System.out.println(phongban);
     }//GEN-LAST:event_cboPhongBanActionPerformed
 
     private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
         Combo_controller cv = new Combo_controller();
         String tencv = cboChucVu.getSelectedItem().toString().trim();
         chucvu = cv.macv(tencv);
-        System.out.println(chucvu);
+        //System.out.println(chucvu);
     }//GEN-LAST:event_cboChucVuActionPerformed
 
     private void cboTrinhDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrinhDoActionPerformed
         Combo_controller cv = new Combo_controller();
         String tentd = cboTrinhDo.getSelectedItem().toString().trim();
         trinhdo = cv.matdhv(tentd);
-        System.out.println(trinhdo);
+        //System.out.println(trinhdo);
     }//GEN-LAST:event_cboTrinhDoActionPerformed
 
+    //Kiem tra mot chuoi chuyen vao co phai la so thuc hay khong
+    public boolean isStringFloat(String s) {
+        try {
+            Float.parseFloat(s);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+
+    //Them nhan vien vao CSDL
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-            
+
         if (txtMaNV.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đủ thông tin, nhập lại!");
         } else if (txtHoTen.getText().equals("")) {
@@ -358,6 +371,7 @@ public class AddEmployee extends javax.swing.JFrame {
         } else {
 
             NhanVien_model nv = new NhanVien_model();
+
             nv.setManv(txtMaNV.getText().trim());
             nv.setHoten(txtHoTen.getText().trim());
             nv.setNgaysinh(txtNgaySinh.getText().trim());
@@ -366,19 +380,30 @@ public class AddEmployee extends javax.swing.JFrame {
             nv.setDantoc(cboDanToc.getSelectedItem().toString().trim());
             nv.setSodt(txtSodt.getText().trim());
             nv.setHeso(Float.parseFloat(cboHeSo.getSelectedItem().toString().trim()));
-            nv.setLuongcb(Float.parseFloat(txtLuongCB.getText().trim()));
-            nv.setImage(path.getText().trim());
-            nv.setMapb(phongban.trim());
-            nv.setMacv(chucvu.trim());
-            nv.setMatdhv(trinhdo.trim());
+            int y = 1;
+            while (y > 0) {
+                if (isStringFloat(txtLuongCB.getText().trim())) {
+                    nv.setLuongcb(Float.parseFloat(txtLuongCB.getText().trim()));
+                    nv.setImage(path.getText().trim());
+                    nv.setMapb(phongban.trim());
+                    nv.setMacv(chucvu.trim());
+                    nv.setMatdhv(trinhdo.trim());
 
-            int rowInserted = nv_ct.InsertNV(nv);
-            if (rowInserted > 0) {
-                JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thành công");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thất bại");
+                    int rowInserted = nv_ct.InsertNV(nv);
+                    if (rowInserted > 0) {
+                        y--;
+                        JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên thành công");
+                    } else {
+                        y--;
+                        JOptionPane.showMessageDialog(rootPane, "Mã nhân viên đã tồn tại, nhập lại!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Lương của nhân viên chứa kí tự không phù hợp, nhập lại!");
+                    break;
+                }
             }
         }
+
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThoatMouseClicked
@@ -421,36 +446,41 @@ public class AddEmployee extends javax.swing.JFrame {
 
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new AddEmployee().setVisible(true);
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AddEmployee.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AddEmployee.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AddEmployee.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AddEmployee.class
+//                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new AddEmployee().setVisible(true);
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;

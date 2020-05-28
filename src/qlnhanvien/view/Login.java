@@ -7,20 +7,19 @@ package qlnhanvien.view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import qlnhanvien.dal.Login_dal;
 import qlnhanvien.controller.Login_controller;
+import qlnhanvien.model.Login_model;
 
 /**
  *
  * @author nhatnguyen
  */
 public class Login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login
-     */
-    //nguyenducnhat
+    public static String user;
+    public static int role;
     Login_dal contr;
     Login_controller dal;
 
@@ -44,29 +43,33 @@ public class Login extends javax.swing.JFrame {
         lbTendangnhap = new javax.swing.JLabel();
         lbMatkhau = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("QUẢN LÝ NHÂN VIÊN");
 
         lbTendangnhap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lbTendangnhap.setText("Username:");
+        lbTendangnhap.setText("Tên đăng nhập:");
 
         lbMatkhau.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lbMatkhau.setText("Password:");
+        lbMatkhau.setText("Mật khẩu:");
 
+        btnDangNhap.setBackground(new java.awt.Color(0, 96, 181));
         btnDangNhap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDangNhap.setText("Login");
+        btnDangNhap.setText("Đăng nhập");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Login");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.setBackground(new java.awt.Color(0, 96, 181));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ĐĂNG NHẬP");
+        jLabel2.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,17 +81,16 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(btnDangNhap)
                     .addComponent(lbMatkhau)
                     .addComponent(lbTendangnhap)
-                    .addComponent(txtUserName)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(txtPassword))
                 .addContainerGap(110, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lbTendangnhap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -105,12 +107,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
-        String user = txtUserName.getText();
-        String password = new String(txtPassword.getPassword());
 
-        boolean check = dal.getResult(user, password);
-        if (check == true) {
+        String password = "";
+        String getuser = txtUserName.getText().trim();
+        String getpw = new String(txtPassword.getPassword()).trim();
+        ArrayList<Login_model> list = new ArrayList<>();
+        list = dal.getResult(getuser, getpw);
+        for (Login_model l : list) {
+            user = l.getUsername().trim();
+            password = l.getPassword().trim();
+            role = l.getRole();
+        }
+        if (getuser.equals(user) && getpw.equals(password)) {
             Main m = new Main();
             m.setVisible(true);
             this.dispose();
@@ -156,7 +164,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbMatkhau;
     private javax.swing.JLabel lbTendangnhap;
     private javax.swing.JPasswordField txtPassword;

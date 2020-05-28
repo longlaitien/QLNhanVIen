@@ -20,6 +20,12 @@ public class Login_model {
     public Login_model() {
     }
 
+    public Login_model(String username, String password, int role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+    
     public String getUsername() {
         return username;
     }
