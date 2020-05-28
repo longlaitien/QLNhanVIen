@@ -18,7 +18,8 @@ import qlnhanvien.model.Login_model;
  * @author nhatnguyen
  */
 public class Login extends javax.swing.JFrame {
-    public static String user;
+    public static String user ="";
+    public static String password="";
     public static int role;
     Login_dal contr;
     Login_controller dal;
@@ -28,6 +29,7 @@ public class Login extends javax.swing.JFrame {
         dal = new Login_controller();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        remember();
     }
 
     /**
@@ -105,10 +107,15 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void remember(){
+        if(user.trim()!= "" && password.trim()!=""){
+            txtUserName.setText(user);
+            txtPassword.setText(password);
+        }
+    }
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
 
-        String password = "";
         String getuser = txtUserName.getText().trim();
         String getpw = new String(txtPassword.getPassword()).trim();
         ArrayList<Login_model> list = new ArrayList<>();

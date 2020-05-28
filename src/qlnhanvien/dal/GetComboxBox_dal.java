@@ -36,12 +36,12 @@ public class GetComboxBox_dal {
     //Lay du lieu bang ChucVu do vao ComboBox
     public ArrayList<Chucvu_model> Combo_ChucVu() {
         ArrayList<Chucvu_model> list = new ArrayList<>();
-        String sql = "SELECT macv,tencv FROM ChucVu";
+        String sql = "SELECT macv,tencv,trangthai FROM ChucVu";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                cv = new Chucvu_model(rs.getString("macv"), rs.getString("tencv"));
+                cv = new Chucvu_model(rs.getString("macv"), rs.getString("tencv"),rs.getInt("trangthai"));
                 list.add(cv);
             }
         } catch (SQLException ex) {
@@ -53,12 +53,12 @@ public class GetComboxBox_dal {
     //Lay du lieu bang PhongBan do vao ComboBox
     public ArrayList<Phongban_model> Combo_PhongBan() {
         ArrayList<Phongban_model> list = new ArrayList<>();
-        String sql = "SELECT mapb,tenpb,diachi,sodtpb FROM PhongBan";
+        String sql = "SELECT mapb,tenpb,diachi,sodtpb,trangthai FROM PhongBan";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"));
+                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"),rs.getInt("trangthai"));
                 list.add(pb);
             }
         } catch (SQLException ex) {
@@ -67,15 +67,15 @@ public class GetComboxBox_dal {
         return list;
     }
 
-    //Lay du lieu bang Trinh do vao ComboBox
+    //Lay du lieu bang TrinhDo vao ComboBox
     public ArrayList<Trinhdo_model> Combo_TrinhDo() {
         ArrayList<Trinhdo_model> list = new ArrayList<>();
-        String sql = "SELECT matdhv,tentd FROM TrinhDo";
+        String sql = "SELECT matdhv,tentd,trangthai FROM TrinhDo";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                td = new Trinhdo_model(rs.getString("matdhv"), rs.getString("tentd"));
+                td = new Trinhdo_model(rs.getString("matdhv"), rs.getString("tentd"),rs.getInt("trangthai"));
                 list.add(td);
             }
         } catch (SQLException ex) {
@@ -100,6 +100,7 @@ public class GetComboxBox_dal {
         return list;
     }
 
+    //3 hàm sau để lấy về giá trị khi click chuột vào combox ở form thêm và sửa nhân viên
     public String pb(String tenpb) {
         String cboPhongBan = "";
         String sql = "SELECT mapb FROM PhongBan WHERE tenpb=N'" + tenpb + "'";

@@ -12,15 +12,17 @@ package qlnhanvien.model;
 public class Phongban_model {
 
     String mapb, tenpb, diachi, sodtpb;
+    int trangthai;
 
     public Phongban_model() {
     }
 
-    public Phongban_model(String mapb, String tenpb, String diachi, String sodtpb) {
+    public Phongban_model(String mapb, String tenpb, String diachi, String sodtpb,int trangthai) {
         this.mapb = mapb;
         this.tenpb = tenpb;
         this.diachi = diachi;
         this.sodtpb = sodtpb;
+        this.trangthai = trangthai;
     }
 
     public String getMapb() {
@@ -54,5 +56,14 @@ public class Phongban_model {
     public void setSodtpb(String sodtpb) {
         this.sodtpb = sodtpb;
     }
+    
+     public int getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
+    }
+
 
 }

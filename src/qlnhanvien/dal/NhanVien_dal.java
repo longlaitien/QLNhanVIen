@@ -48,7 +48,7 @@ public class NhanVien_dal {
     }
 
     public int Update_Nhanvien(NhanVien_model nvmodel) {
-        int rowInserted = 0;
+        int rowUpdated = 0;
         String sql = "UPDATE NhanVien SET hoten=?,ngaysinh=?,quequan=?,gioitinh=?,dantoc=?,sodt=?,heso=?,luongcb=?,image=?,mapb=?,macv=?,matdhv=?,trangthai=? WHERE manv=?";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
@@ -67,11 +67,11 @@ public class NhanVien_dal {
             pre.setString(12, nvmodel.getMatdhv());
             pre.setInt(13, 1);
             pre.setString(14, nvmodel.getManv());
-            rowInserted = pre.executeUpdate();
+            rowUpdated = pre.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, e);
         }
-        return rowInserted;
+        return rowUpdated;
     }
 
     public int Delete_NhanVien(String manv) {

@@ -12,10 +12,16 @@ package qlnhanvien.model;
 public class Trinhdo_model {
 
     String matdhv, tentd;
+    int trangthai;
 
-    public Trinhdo_model(String matdhv, String tentd) {
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
+    }
+
+    public Trinhdo_model(String matdhv, String tentd, int trangthai) {
         this.matdhv = matdhv;
         this.tentd = tentd;
+        this.trangthai = trangthai;
     }
 
     public Trinhdo_model() {
@@ -35,6 +41,10 @@ public class Trinhdo_model {
 
     public void setTentd(String tentd) {
         this.tentd = tentd;
+    }
+
+    public int getTrangthai() {
+        return trangthai;
     }
 
 }

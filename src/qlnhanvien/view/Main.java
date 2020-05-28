@@ -8,25 +8,19 @@ package qlnhanvien.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import qlnhanvien.controller.Combo_controller;
 import qlnhanvien.controller.NhanVien_Controller;
-import qlnhanvien.model.NhanVien_model;
 
 /**
  *
  * @author nhatnguyen
  */
-public class Main extends javax.swing.JFrame {
+public final class Main extends javax.swing.JFrame {
 
     public static String manv, hoten;
     public static String ngaysinh;
@@ -52,12 +46,12 @@ public class Main extends javax.swing.JFrame {
         if (Login.role == 1) {
             btnAdd.setEnabled(false);
             btnDelete.setEnabled(false);
-            lbUser.setText(Login.user.toUpperCase()+" (nhân viên)".toLowerCase());
+            lbUser.setText(Login.user.toUpperCase() + " (nhân viên)".toLowerCase());
             btnUpdate.setText("Thông tin");
-        }else{
-             lbUser.setText(Login.user.toUpperCase()+" (admin)".toLowerCase());
+        } else {
+            lbUser.setText(Login.user.toUpperCase() + " (admin)".toLowerCase());
         }
-        
+
         lbUser.setFont(lbUser.getFont().deriveFont(14.0F));
     }
 
@@ -85,7 +79,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbDeparment = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -146,6 +140,9 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        pnTable.setBackground(new java.awt.Color(255, 255, 255));
+        pnTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         btnAdd.setBackground(new java.awt.Color(0, 102, 255));
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icadd.png"))); // NOI18N
@@ -194,7 +191,7 @@ public class Main extends javax.swing.JFrame {
         tblNhanVien.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         tblNhanVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tblNhanVien.setFillsViewportHeight(true);
-        tblNhanVien.setRowHeight(25);
+        tblNhanVien.setRowHeight(30);
         jScrollPane1.setViewportView(tblNhanVien);
         tblNhanVien.getAccessibleContext().setAccessibleParent(pnTable);
 
@@ -270,24 +267,24 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setBackground(new java.awt.Color(0, 96, 181));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icdepartment.png"))); // NOI18N
-        jLabel1.setLabelFor(btnAdd);
-        jLabel1.setText("PHÒNG BAN");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel1.setOpaque(true);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbDeparment.setBackground(new java.awt.Color(0, 96, 181));
+        lbDeparment.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbDeparment.setForeground(new java.awt.Color(255, 255, 204));
+        lbDeparment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbDeparment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icdepartment.png"))); // NOI18N
+        lbDeparment.setLabelFor(btnAdd);
+        lbDeparment.setText("PHÒNG BAN");
+        lbDeparment.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbDeparment.setOpaque(true);
+        lbDeparment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lbDeparmentMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel1MouseEntered(evt);
+                lbDeparmentMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel1MouseExited(evt);
+                lbDeparmentMouseExited(evt);
             }
         });
 
@@ -370,22 +367,21 @@ public class Main extends javax.swing.JFrame {
         pnMenu.setLayout(pnMenuLayout);
         pnMenuLayout.setHorizontalGroup(
             pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbUser, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                    .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(lbUser, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+            .addGroup(pnMenuLayout.createSequentialGroup()
+                .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbDeparment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnMenuLayout.setVerticalGroup(
             pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMenuLayout.createSequentialGroup()
                 .addComponent(lbUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(lbDeparment, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -405,7 +401,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
@@ -421,7 +417,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -523,19 +519,25 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lbDeparmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseClicked
+        pnTable.setVisible(false);
+        pnTable.setEnabled(false);
+        Department_panel department = new Department_panel();
+        department.setVisible(true);
+        department.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
+        this.add(department);
+       
+    }//GEN-LAST:event_lbDeparmentMouseClicked
 
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void lbDeparmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseEntered
 
-    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        lbDeparment.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbDeparmentMouseEntered
 
-        jLabel1.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_jLabel1MouseEntered
+    private void lbDeparmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseExited
 
-    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
-
-        jLabel1.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_jLabel1MouseExited
+        lbDeparment.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbDeparmentMouseExited
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
 
@@ -560,10 +562,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setBackground(new Color(153, 190, 236));
     }//GEN-LAST:event_jLabel3MouseEntered
-
-    private void lbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseClicked
-        DataTable();
-    }//GEN-LAST:event_lbUserMouseClicked
 
     private void lbUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseEntered
 
@@ -590,19 +588,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void lbLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLogoMouseClicked
-        // TODO add your handling code here:
-        int x = this.pnMenu.getWidth();
-        if (x == 215) {
-            pnMenu.setSize(215, 400);
-            Thread th = new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        for (int i = 215; i >= 0; i--) {
-                            Thread.sleep(1);
-                            pnMenu.setSize(i, 400);
-                            pnTable.setBounds(i + 10, 65, pnTable.getWidth() + i, pnTable.getHeight());
-                        }
+
+//        int x = this.pnMenu.getWidth();
+//        if (x == 215) {
+//            pnMenu.setSize(215, 400);
+//            Thread th = new Thread() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        for (int i = 215; i >= 0; i--) {
+//                            Thread.sleep(1);
+//                            pnMenu.setSize(i, 400);
+//                            pnTable.setBounds(i + 10, 65, pnTable.getWidth() + i, pnTable.getHeight());
+//                        }
 //                        tblNhanVien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 //                        tblNhanVien.setSize(new Dimension(pnTable.getWidth(), pnTable.getHeight()));
 //
@@ -615,33 +613,33 @@ public class Main extends javax.swing.JFrame {
 //                        for (int i = 0; i < tblNhanVien.getColumnCount(); i++) {
 //                            tcm.getColumn(i).setPreferredWidth(s);
 //                        }
-
-                    } catch (Exception e) {
-                        System.out.println("Lỗi hide menu");
-                    }
-
-                }
-
-            };
-            th.start();
-
-        } else if (x == 0) {
-            Thread th = new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        for (int i = 0; i <= 215; i++) {
-                            Thread.sleep(1);
-                            pnMenu.setSize(i, 400);
-                            pnTable.setBounds(i + 20, 65, pnTable.getWidth() - i, pnTable.getHeight());
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Lỗi hide menu");
-                    }
-                }
-            };
-            th.start();
-        }
+//
+//                    } catch (Exception e) {
+//                        System.out.println("Lỗi hide menu");
+//                    }
+//
+//                }
+//
+//            };
+//            th.start();
+//
+//        } else if (x == 0) {
+//            Thread th = new Thread() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        for (int i = 0; i <= 215; i++) {
+//                            Thread.sleep(1);
+//                            pnMenu.setSize(i, 400);
+//                            pnTable.setBounds(i + 20, 65, pnTable.getWidth() - i, pnTable.getHeight());
+//                        }
+//                    } catch (Exception e) {
+//                        System.out.println("Lỗi hide menu");
+//                    }
+//                }
+//            };
+//            th.start();
+//        }
 
     }//GEN-LAST:event_lbLogoMouseClicked
 
@@ -816,6 +814,11 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void lbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseClicked
+        pnTable.setVisible(true);
+        
+    }//GEN-LAST:event_lbUserMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -858,7 +861,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -866,6 +868,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbDeparment;
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbLogout;
     private javax.swing.JLabel lbUser;
