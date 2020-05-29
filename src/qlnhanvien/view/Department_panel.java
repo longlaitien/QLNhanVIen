@@ -15,28 +15,30 @@ import qlnhanvien.controller.PhongBan_controller;
  *
  * @author nhatnguyen
  */
-public final class Department_panel extends javax.swing.JPanel {
+public class Department_panel extends javax.swing.JPanel {
 
     PhongBan_controller ctr = new PhongBan_controller();
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model;
 
     int flag = 0;
 
     public Department_panel() {
+
         initComponents();
         EnableECRUD();
         DataTable();
     }
 
-    public void DataTable() {
+    public final void DataTable() {
         String[] columns = {"Mã phòng ban", "Tên phòng ban", "Địa chỉ", "Số ĐT", "Trạng thái"};
+        model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
         tblPhongBan.setModel(model);
-        String mapb = null;
-        String tenpb = null;
-        String diachi = null;
-        String sodtpb = null;
-        String trangthai = null;
+        String mapb = "";
+        String tenpb = "";
+        String diachi = "";
+        String sodtpb = "";
+        String trangthai = "";
 
         try {
             int dem1 = 0, dem2 = 0;
@@ -69,11 +71,9 @@ public final class Department_panel extends javax.swing.JPanel {
         }
     }
 
-    public void EnableECRUD() {
-        pnPhongBan.setEnabled(false);
+    public final void EnableECRUD() {
         btnSave.setEnabled(false);
         btnCancel.setEnabled(false);
-        pnPhongBan.setEnabled(false);
 
         btnAdd.setEnabled(true);
         btnUpdate.setEnabled(true);
@@ -82,10 +82,8 @@ public final class Department_panel extends javax.swing.JPanel {
     }
 
     public void DisableECRUD() {
-        pnPhongBan.setEnabled(true);
         btnSave.setEnabled(true);
         btnCancel.setEnabled(true);
-        pnPhongBan.setEnabled(true);
 
         btnAdd.setEnabled(false);
         btnUpdate.setEnabled(false);
@@ -109,24 +107,23 @@ public final class Department_panel extends javax.swing.JPanel {
         tblPhongBan = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        pnPhongBan = new javax.swing.JPanel();
-        chbTrangThai = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         txtMaPB = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         txtTenPB = new javax.swing.JTextField();
-        txtTotalActive = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         txtDiaChiPB = new javax.swing.JTextField();
-        txtTotalDisactive = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         txtSodtPB = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        chbTrangThai = new javax.swing.JCheckBox();
+        txtTotalActive = new javax.swing.JTextField();
+        txtTotalDisactive = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setPreferredSize(new java.awt.Dimension(640, 460));
 
         btnAdd.setBackground(new java.awt.Color(0, 102, 255));
@@ -189,88 +186,21 @@ public final class Department_panel extends javax.swing.JPanel {
             }
         });
 
-        pnPhongBan.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Mã phòng ban:");
+
+        jLabel11.setText("Tên phòng ban:");
+
+        jLabel12.setText("Địa chỉ:");
+
+        jLabel13.setText("Số ĐT:");
+
+        jLabel14.setText("Trạng thái:");
 
         chbTrangThai.setText("Còn hoạt động");
 
-        jLabel6.setText("Tổng số phòng ban hiện có:");
+        jLabel8.setText("Số phòng ban hiện có:");
 
-        jLabel7.setText("Tổng số phòng ban dừng hoạt động:");
-
-        jLabel1.setText("Mã phòng ban:");
-
-        jLabel2.setText("Tên phòng ban:");
-
-        jLabel3.setText("Địa chỉ:");
-
-        jLabel4.setText("Số ĐT:");
-
-        jLabel5.setText("Trạng thái:");
-
-        javax.swing.GroupLayout pnPhongBanLayout = new javax.swing.GroupLayout(pnPhongBan);
-        pnPhongBan.setLayout(pnPhongBanLayout);
-        pnPhongBanLayout.setHorizontalGroup(
-            pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPhongBanLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnPhongBanLayout.createSequentialGroup()
-                        .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(26, 26, 26)
-                        .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtMaPB, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTenPB, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDiaChiPB, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSodtPB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chbTrangThai, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(pnPhongBanLayout.createSequentialGroup()
-                        .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTotalDisactive)
-                            .addComponent(txtTotalActive, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        pnPhongBanLayout.setVerticalGroup(
-            pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPhongBanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTenPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDiaChiPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSodtPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(chbTrangThai))
-                .addGap(37, 37, 37)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtTotalActive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(pnPhongBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtTotalDisactive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel9.setText("Số phòng ban dừng hoạt động:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -288,10 +218,29 @@ public final class Department_panel extends javax.swing.JPanel {
                         .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancel))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnPhongBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtDiaChiPB, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .addComponent(txtTenPB, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbTrangThai, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTotalActive, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTotalDisactive, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaPB, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSodtPB))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,10 +255,36 @@ public final class Department_panel extends javax.swing.JPanel {
                         .addComponent(btnCancel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnPhongBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtMaPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtTenPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDiaChiPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSodtPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chbTrangThai)
+                            .addComponent(jLabel14))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTotalActive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtTotalDisactive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -355,7 +330,7 @@ public final class Department_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String mapb = txtMaPB.getText();
+        String mapb = txtMaPB.getText().trim();
         String tenpb = txtTenPB.getText();
         String diachi = txtDiaChiPB.getText();
         String sodtpb = txtSodtPB.getText();
@@ -375,23 +350,30 @@ public final class Department_panel extends javax.swing.JPanel {
         } else if (sodtpb.equals("")) {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập đủ thông tin, nhập lại!");
         } else {
-            if (flag == 1) {
-                int rowInserted = ctr.get_Insert_PhongBan(mapb, tenpb, diachi, sodtpb, trangthai);
-                if (rowInserted > 0) {
-                    JOptionPane.showMessageDialog(this, "Thêm phòng ban thành công");
-                    DataTable();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Mã phòng ban đã tồn tại");
-                }
+            switch (flag) {
+                case 1:
+                    int rowInserted = ctr.get_Insert_PhongBan(mapb, tenpb, diachi, sodtpb, trangthai);
+                    if (rowInserted > 0) {
+                        JOptionPane.showMessageDialog(this, "Thêm phòng ban thành công");
+                        EnableECRUD();
+                        DataTable();
 
-            } else if (flag == 2) {
-                int rowUpdated = ctr.get_Update_PhongBan(mapb, tenpb, diachi, sodtpb, trangthai);
-                if (rowUpdated > 0) {
-                    JOptionPane.showMessageDialog(this, "Sửa phòng ban thành công");
-                    DataTable();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Sửa phòng ban thất bại!");
-                }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Mã phòng ban đã tồn tại");
+                    }
+                    break;
+
+                case 2:
+                    int rowUpdated = ctr.get_Update_PhongBan(mapb, tenpb, diachi, sodtpb, trangthai);
+                    if (rowUpdated > 0) {
+                        JOptionPane.showMessageDialog(this, "Sửa phòng ban thành công");
+                        EnableECRUD();
+                        DataTable();
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Sửa phòng ban thất bại!");
+                    }
+                    break;
             }
         }
 
@@ -409,15 +391,14 @@ public final class Department_panel extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chbTrangThai;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel pnPhongBan;
     private javax.swing.JTable tblPhongBan;
     private javax.swing.JTextField txtDiaChiPB;
     private javax.swing.JTextField txtMaPB;

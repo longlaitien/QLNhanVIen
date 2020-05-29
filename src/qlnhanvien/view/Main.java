@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import qlnhanvien.controller.Combo_controller;
 import qlnhanvien.controller.NhanVien_Controller;
@@ -20,7 +21,7 @@ import qlnhanvien.controller.NhanVien_Controller;
  *
  * @author nhatnguyen
  */
-public final class Main extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     public static String manv, hoten;
     public static String ngaysinh;
@@ -31,18 +32,36 @@ public final class Main extends javax.swing.JFrame {
     DefaultTableModel model;
     NhanVien_Controller nv;
 
+//    Department_panel department=new Department_panel();;
+//    Position_panel position=new Position_panel();;
+//    TrinhDo_panel trinhdo=new TrinhDo_panel();;
     public Main() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         DataTable();
-        authen();
+        Authen();
         //getDataTableColumn();
         nv = new NhanVien_Controller();
 
     }
 
-    public void authen() {
+//    public void HidePanel() {
+//       
+//
+//        position.setVisible(false);
+//        department.setVisible(false);
+//        trinhdo.setVisible(false);
+//        pnTable.setVisible(false);
+//    }
+//
+//    public void ShowPanel(JPanel pn) {
+//        HidePanel();
+//        pn.setVisible(true);
+//        pn.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
+//        this.getContentPane().add(pn);
+//    }
+    public void Authen() {
         if (Login.role == 1) {
             btnAdd.setEnabled(false);
             btnDelete.setEnabled(false);
@@ -53,6 +72,98 @@ public final class Main extends javax.swing.JFrame {
         }
 
         lbUser.setFont(lbUser.getFont().deriveFont(14.0F));
+    }
+
+    public void DataTable() {
+        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ"};
+        model = new DefaultTableModel();
+        model.setColumnIdentifiers(columns);
+        tblNhanVien.setModel(model);
+        Combo_controller cbo = new Combo_controller();
+        String manv;
+        String hoten;
+        String ngaysinh;
+        String quequan;
+        String gioitinh;
+        String dantoc;
+        String sodt;
+        float heso;
+        float luongcb;
+        String image;
+        String mapb = "";
+        String macv = "";
+        String matdhv = "";
+
+        try {
+
+            for (int i = 0; i < cbo.getDataTable().size(); i++) {
+
+                manv = cbo.getDataTable().get(i).getManv();
+                hoten = cbo.getDataTable().get(i).getHoten();
+                ngaysinh = cbo.getDataTable().get(i).getNgaysinh();
+                quequan = cbo.getDataTable().get(i).getQuequan();
+                gioitinh = cbo.getDataTable().get(i).getGioitinh();
+                sodt = cbo.getDataTable().get(i).getSodt();
+                dantoc = cbo.getDataTable().get(i).getDantoc();
+                heso = cbo.getDataTable().get(i).getHeso();
+                luongcb = cbo.getDataTable().get(i).getLuongcb();
+                image = cbo.getDataTable().get(i).getImage();
+                switch (cbo.getDataTable().get(i).getMapb().trim()) {
+                    case "pb1":
+                        mapb = "Phòng phát triển";
+                        break;
+                    case "pb2":
+                        mapb = "Phòng nhân sự";
+                        break;
+                    case "pb3":
+                        mapb = "Phòng marketing";
+                        break;
+                    case "pb4":
+                        mapb = "Phòng kế toán";
+                        break;
+                }
+
+                switch (cbo.getDataTable().get(i).getMacv().trim()) {
+                    case "cv1":
+                        macv = "Giám đốc";
+                        break;
+                    case "cv2":
+                        macv = "Trưởng phòng";
+                        break;
+                    case "cv3":
+                        macv = "Phó trưởng phòng";
+                        break;
+                    case "cv4":
+                        macv = "Nhân viên";
+                        break;
+                    case "cv5":
+                        macv = "Thực tập sinh";
+                        break;
+                }
+
+                switch (cbo.getDataTable().get(i).getMatdhv().trim()) {
+                    case "td1":
+                        matdhv = "Caohọc";
+                        break;
+                    case "td2":
+                        matdhv = "Đại học";
+                        break;
+                    case "td3":
+                        matdhv = "Cao đẳng";
+                        break;
+                    case "td4":
+                        matdhv = "Trung cấp";
+                }
+
+                model.addRow(new Object[]{
+                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv
+                });
+//                System.out.println(mapb+macv+matdhv);
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     /**
@@ -80,9 +191,9 @@ public final class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
         lbDeparment = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbChucVu = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTrinhDo = new javax.swing.JLabel();
         lbUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -288,22 +399,22 @@ public final class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(0, 96, 181));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icposition.png"))); // NOI18N
-        jLabel2.setText("CHỨC VỤ");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel2.setOpaque(true);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbChucVu.setBackground(new java.awt.Color(0, 96, 181));
+        lbChucVu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbChucVu.setForeground(new java.awt.Color(255, 255, 204));
+        lbChucVu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icposition.png"))); // NOI18N
+        lbChucVu.setText("CHỨC VỤ");
+        lbChucVu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbChucVu.setOpaque(true);
+        lbChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lbChucVuMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
+                lbChucVuMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
+                lbChucVuMouseExited(evt);
             }
         });
 
@@ -324,22 +435,22 @@ public final class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(0, 96, 181));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iclevel.png"))); // NOI18N
-        jLabel4.setText("TRÌNH ĐỘ");
-        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel4.setOpaque(true);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbTrinhDo.setBackground(new java.awt.Color(0, 96, 181));
+        lbTrinhDo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbTrinhDo.setForeground(new java.awt.Color(255, 255, 204));
+        lbTrinhDo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iclevel.png"))); // NOI18N
+        lbTrinhDo.setText("TRÌNH ĐỘ");
+        lbTrinhDo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbTrinhDo.setOpaque(true);
+        lbTrinhDo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                lbTrinhDoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                lbTrinhDoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+                lbTrinhDoMouseExited(evt);
             }
         });
 
@@ -371,8 +482,8 @@ public final class Main extends javax.swing.JFrame {
             .addGroup(pnMenuLayout.createSequentialGroup()
                 .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbDeparment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                    .addComponent(lbChucVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbTrinhDo, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -383,9 +494,9 @@ public final class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(lbDeparment, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
@@ -424,109 +535,26 @@ public final class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void DataTable() {
-        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ"};
-        model = new DefaultTableModel();
-        model.setColumnIdentifiers(columns);
-        tblNhanVien.setModel(model);
-        Combo_controller cbo = new Combo_controller();
-        String manv;
-        String hoten;
-        String ngaysinh;
-        String quequan;
-        String gioitinh;
-        String dantoc;
-        String sodt;
-        float heso;
-        float luongcb;
-        String image;
-        String mapb = "";
-        String macv = "";
-        String matdhv = "";
 
-        try {
+    private void lbChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseClicked
+        pnTable.setVisible(false);
+        Position_panel ps = new Position_panel();
+        this.getContentPane().add(ps);
+        ps.setVisible(true);
+        ps.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
+        this.getContentPane().add(ps);
 
-            for (int i = 0; i < cbo.getDataTable().size(); i++) {
-
-                manv = cbo.getDataTable().get(i).getManv();
-                hoten = cbo.getDataTable().get(i).getHoten();
-                ngaysinh = cbo.getDataTable().get(i).getNgaysinh();
-                quequan = cbo.getDataTable().get(i).getQuequan();
-                gioitinh = cbo.getDataTable().get(i).getGioitinh();
-                sodt = cbo.getDataTable().get(i).getSodt();
-                dantoc = cbo.getDataTable().get(i).getDantoc();
-                heso = cbo.getDataTable().get(i).getHeso();
-                luongcb = cbo.getDataTable().get(i).getLuongcb();
-                image = cbo.getDataTable().get(i).getImage();
-                switch (cbo.getDataTable().get(i).getMapb().trim()) {
-                    case "pb1":
-                        mapb = "Phòng phát triển";
-                        break;
-                    case "pb2":
-                        mapb = "Phòng nhân sự";
-                        break;
-                    case "pb3":
-                        mapb = "Phòng marketing";
-                        break;
-                    case "pb4":
-                        mapb = "Phòng kế toán";
-                        break;
-                }
-
-                switch (cbo.getDataTable().get(i).getMacv().trim()) {
-                    case "cv1":
-                        macv = "Giám đốc";
-                        break;
-                    case "cv2":
-                        macv = "Trưởng phòng";
-                        break;
-                    case "cv3":
-                        macv = "Phó trưởng phòng";
-                        break;
-                    case "cv4":
-                        macv = "Nhân viên";
-                        break;
-                    case "cv5":
-                        macv = "Thực tập sinh";
-                        break;
-                }
-
-                switch (cbo.getDataTable().get(i).getMatdhv().trim()) {
-                    case "td1":
-                        matdhv = "Caohọc";
-                        break;
-                    case "td2":
-                        matdhv = "Đại học";
-                        break;
-                    case "td3":
-                        matdhv = "Cao đẳng";
-                        break;
-                    case "td4":
-                        matdhv = "Trung cấp";
-                }
-
-                model.addRow(new Object[]{
-                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv
-                });
-//                System.out.println(mapb+macv+matdhv);
-
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_lbChucVuMouseClicked
 
     private void lbDeparmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseClicked
         pnTable.setVisible(false);
-        pnTable.setEnabled(false);
-        Department_panel department = new Department_panel();
-        department.setVisible(true);
-        department.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
-        this.add(department);
-       
+        Department_panel dp = new Department_panel();
+        this.getContentPane().add(dp);
+        dp.setVisible(true);
+        dp.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
+        this.getContentPane().add(dp);
+
+
     }//GEN-LAST:event_lbDeparmentMouseClicked
 
     private void lbDeparmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseEntered
@@ -539,15 +567,15 @@ public final class Main extends javax.swing.JFrame {
         lbDeparment.setBackground(new Color(0, 96, 181));
     }//GEN-LAST:event_lbDeparmentMouseExited
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+    private void lbChucVuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseEntered
 
-        jLabel2.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_jLabel2MouseEntered
+        lbChucVu.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbChucVuMouseEntered
 
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+    private void lbChucVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseExited
 
-        jLabel2.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_jLabel2MouseExited
+        lbChucVu.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbChucVuMouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
 
@@ -573,19 +601,24 @@ public final class Main extends javax.swing.JFrame {
         lbUser.setBackground(new Color(0, 96, 181));
     }//GEN-LAST:event_lbUserMouseExited
 
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+    private void lbTrinhDoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseExited
 
-        jLabel4.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_jLabel4MouseExited
+        lbTrinhDo.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbTrinhDoMouseExited
 
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+    private void lbTrinhDoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseEntered
 
-        jLabel4.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_jLabel4MouseEntered
+        lbTrinhDo.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbTrinhDoMouseEntered
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-
-    }//GEN-LAST:event_jLabel4MouseClicked
+    private void lbTrinhDoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseClicked
+        pnTable.setVisible(false);
+        TrinhDo_panel td = new TrinhDo_panel();
+        this.getContentPane().add(td);
+        td.setVisible(true);
+        td.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
+        this.getContentPane().add(td);
+    }//GEN-LAST:event_lbTrinhDoMouseClicked
 
     private void lbLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLogoMouseClicked
 
@@ -816,7 +849,7 @@ public final class Main extends javax.swing.JFrame {
 
     private void lbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseClicked
         pnTable.setVisible(true);
-        
+
     }//GEN-LAST:event_lbUserMouseClicked
 
     /**
@@ -861,16 +894,16 @@ public final class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbChucVu;
     private javax.swing.JLabel lbDeparment;
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbLogout;
+    private javax.swing.JLabel lbTrinhDo;
     private javax.swing.JLabel lbUser;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnTable;

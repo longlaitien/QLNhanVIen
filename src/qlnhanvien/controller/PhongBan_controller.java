@@ -20,14 +20,16 @@ public class PhongBan_controller {
     public ArrayList<Phongban_model> getDataTable() {
         return dal.DataTable();
     }
-  public int get_Insert_PhongBan(String mapb , String tenpb , String diachi , String sodtpb, int trangthai) {
+
+    public int get_Insert_PhongBan(String mapb, String tenpb, String diachi, String sodtpb, int trangthai) {
         return dal.Insert_PhongBan(mapb, tenpb, diachi, sodtpb, trangthai);
     }
-    public int get_Update_PhongBan(String mapb , String tenpb , String diachi , String sodtpb, int trangthai) {
+
+    public int get_Update_PhongBan(String mapb, String tenpb, String diachi, String sodtpb, int trangthai) {
         return dal.Update_PhongBan(mapb, tenpb, diachi, sodtpb, trangthai);
     }
     
      public int get_Delete_PhongBan(String mapb) {
-        return dal.Delete_NhanVien(mapb);
+        return dal.Delete_PhongBan(mapb);
     }
 }

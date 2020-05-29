@@ -59,10 +59,9 @@ public class PhongBan_dal {
 
     public int Update_PhongBan(String mapb, String tenpb, String diachi, String sodtpb, int trangthai) {
         int rowUpdated = 0;
-        String sql = "UPDATE NhanVien SET tenpb=?,diachi=?,sodtpb=?,trangthai=? WHERE mapb=?";
+        String sql = "UPDATE PhongBan SET tenpb = ?,diachi = ?,sodtpb = ?,trangthai = ? WHERE mapb = ?";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
-
             pre.setString(1, tenpb);
             pre.setString(2, diachi);
             pre.setString(3, sodtpb);
@@ -76,7 +75,7 @@ public class PhongBan_dal {
         return rowUpdated;
     }
 
-    public int Delete_NhanVien(String mapb) {
+    public int Delete_PhongBan(String mapb) {
         int rowDeleted = 0;
         String sql = "DELETE FROM PhongBan WHERE mapb=?";
         PreparedStatement statement;

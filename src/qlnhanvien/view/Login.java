@@ -109,7 +109,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     public void remember(){
-        if(user.trim()!= "" && password.trim()!=""){
+        if(!"".equals(user.trim()) && !"".equals(password.trim())){
             txtUserName.setText(user);
             txtPassword.setText(password);
         }
