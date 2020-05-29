@@ -28,6 +28,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
     String trinhdo = null;
     NhanVien_Controller nv_ct = new NhanVien_Controller();
 
+    public static String image_path_update;
+
     public UpdateEmployee() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -39,14 +41,15 @@ public class UpdateEmployee extends javax.swing.JFrame {
         authen();
 
     }
-    
+
     public void authen() {
         if (Login.role == 1) {
             btnLuu.setEnabled(false);
             btnHuy.setEnabled(false);
+            btnChonAnh.setVisible(false);
             lbHeader.setText("THÔNG TIN NHÂN VIÊN");
-        }else{
-             
+        } else {
+
         }
     }
 
@@ -70,6 +73,12 @@ public class UpdateEmployee extends javax.swing.JFrame {
         cboPhongBan.setSelectedItem(Main.mapb);
         cboChucVu.setSelectedItem(Main.macv);
         cboTrinhDo.setSelectedItem(Main.matdhv);
+        if (Main.trangthai.equals("Active")) {
+            chbTrangThai.setSelected(true);
+        } else {
+            chbTrangThai.setSelected(false);
+        }
+        lbImage.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\THINKPAD\\Documents\\GitHub\\QLNhanVien\\src\\images\\avatar\\" + Main.image.trim()).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
 
     }
 
@@ -137,6 +146,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         btnHuy = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         path = new javax.swing.JLabel();
+        chbTrangThai = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("QUẢN LÝ NHÂN VIÊN");
@@ -230,6 +240,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
             }
         });
 
+        chbTrangThai.setText("Hoạt động");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,13 +283,15 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(jLabel14))
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboHeSo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboDanToc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboPhongBan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboChucVu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtLuongCB, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cboHeSo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboDanToc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboPhongBan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboChucVu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtLuongCB, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chbTrangThai))
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -329,7 +343,9 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(btnChonAnh)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnChonAnh)
+                                .addComponent(chbTrangThai))))
                     .addComponent(txtLuongCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,18 +388,21 @@ public class UpdateEmployee extends javax.swing.JFrame {
         ));
 
         int n = fc.showOpenDialog(null);
-        String f = fc.getSelectedFile().getAbsolutePath();
-        File selected = fc.getSelectedFile();
+        image_path_update = fc.getSelectedFile().getAbsolutePath();
+
+        File img = new File(fc.getSelectedFile().getAbsolutePath());
+        String img_name = img.getName();
         if (n == JFileChooser.APPROVE_OPTION) {
-            path.setText(selected.getName());
-        }else{
+            path.setText(img_name);
+        } else if (n == JFileChooser.CANCEL_OPTION) {
             path.setText("null");
         }
-        lbImage.setIcon(new ImageIcon(new ImageIcon(f).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
+        lbImage.setIcon(new ImageIcon(new ImageIcon(image_path_update).getImage().getScaledInstance(250, 120, Image.SCALE_DEFAULT)));
+
     }//GEN-LAST:event_btnChonAnhMouseClicked
 
     private void btnThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThoatMouseClicked
-         int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(rootPane, "Bạn muốn thoát không?", "Xác nhận", dialogButton);
 
         if (dialogResult == JOptionPane.YES_NO_OPTION) {
@@ -420,7 +439,13 @@ public class UpdateEmployee extends javax.swing.JFrame {
             nv.setMapb(phongban.trim());
             nv.setMacv(chucvu.trim());
             nv.setMatdhv(trinhdo.trim());
-
+            File img = new File(image_path_update);
+            img.renameTo(new File("C:\\Users\\THINKPAD\\Documents\\GitHub\\QLNhanVien\\src\\images\\avatar\\" + img.getName()));
+            if (chbTrangThai.isSelected()) {
+                nv.setTrangthai(1);
+            } else {
+                nv.setTrangthai(0);
+            }
             int rowInserted = nv_ct.UpdateNV(nv);
             if (rowInserted > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Sửa thông tin nhân viên thành công");
@@ -484,6 +509,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
     private javax.swing.JComboBox cboHeSo;
     private javax.swing.JComboBox cboPhongBan;
     private javax.swing.JComboBox cboTrinhDo;
+    private javax.swing.JCheckBox chbTrangThai;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

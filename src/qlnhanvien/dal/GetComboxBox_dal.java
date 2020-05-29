@@ -36,7 +36,7 @@ public class GetComboxBox_dal {
     //Lay du lieu bang ChucVu do vao ComboBox
     public ArrayList<Chucvu_model> Combo_ChucVu() {
         ArrayList<Chucvu_model> list = new ArrayList<>();
-        String sql = "SELECT macv,tencv,trangthai FROM ChucVu";
+        String sql = "SELECT macv,tencv,trangthai FROM ChucVu WHERE trangthai  = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -53,7 +53,7 @@ public class GetComboxBox_dal {
     //Lay du lieu bang PhongBan do vao ComboBox
     public ArrayList<Phongban_model> Combo_PhongBan() {
         ArrayList<Phongban_model> list = new ArrayList<>();
-        String sql = "SELECT mapb,tenpb,diachi,sodtpb,trangthai FROM PhongBan";
+        String sql = "SELECT mapb,tenpb,diachi,sodtpb,trangthai FROM PhongBan WHERE trangthai = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -70,7 +70,7 @@ public class GetComboxBox_dal {
     //Lay du lieu bang TrinhDo vao ComboBox
     public ArrayList<Trinhdo_model> Combo_TrinhDo() {
         ArrayList<Trinhdo_model> list = new ArrayList<>();
-        String sql = "SELECT matdhv,tentd,trangthai FROM TrinhDo";
+        String sql = "SELECT matdhv,tentd,trangthai FROM TrinhDo WHERE trangthai = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -87,12 +87,12 @@ public class GetComboxBox_dal {
     //Lay du lieu do vao Table trong giao dien chinh
     public ArrayList<NhanVien_model> DataTable() {
         ArrayList<NhanVien_model> list = new ArrayList<>();
-        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv FROM NhanVien WHERE trangthai = 1";
+        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv,trangthai FROM NhanVien";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"));
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"),rs.getInt("trangthai"));
                 list.add(nv);
             }
         } catch (SQLException e) {

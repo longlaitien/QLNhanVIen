@@ -131,7 +131,7 @@ public class Department_panel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setPreferredSize(new java.awt.Dimension(640, 460));
 
         btnAdd.setBackground(new java.awt.Color(0, 102, 255));
@@ -293,7 +293,7 @@ public class Department_panel extends javax.swing.JPanel {
                             .addComponent(jLabel9)
                             .addComponent(txtTotalDisactive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -38,7 +38,7 @@ public class NhanVien_dal {
             pre.setString(11, nvmodel.getMapb());
             pre.setString(12, nvmodel.getMacv());
             pre.setString(13, nvmodel.getMatdhv());
-            pre.setInt(14, 1);
+            pre.setInt(14, nvmodel.getTrangthai());
             rowInserted = pre.executeUpdate();
         } catch (SQLException e) {
 //            Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, e);
@@ -65,7 +65,7 @@ public class NhanVien_dal {
             pre.setString(10, nvmodel.getMapb());
             pre.setString(11, nvmodel.getMacv());
             pre.setString(12, nvmodel.getMatdhv());
-            pre.setInt(13, 1);
+            pre.setInt(13, nvmodel.getTrangthai());
             pre.setString(14, nvmodel.getManv());
             rowUpdated = pre.executeUpdate();
         } catch (SQLException e) {
@@ -99,7 +99,7 @@ public class NhanVien_dal {
             stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"));
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"),rs.getInt("trangthai"));
                 listModel.add(nv);
             }
         } catch (SQLException ex) {

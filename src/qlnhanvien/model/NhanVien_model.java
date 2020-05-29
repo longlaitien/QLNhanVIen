@@ -18,11 +18,12 @@ public class NhanVien_model {
     String quequan, gioitinh, dantoc, sodt;
     float heso, luongcb;
     String image, mapb, macv, matdhv;
+    int trangthai;
 
     public NhanVien_model() {
     }
 
-    public NhanVien_model(String manv, String hoten, String ngaysinh, String quequan, String gioitinh, String dantoc, String sodt, float heso, float luongcb, String image, String mapb, String macv, String matdhv) {
+    public NhanVien_model(String manv, String hoten, String ngaysinh, String quequan, String gioitinh, String dantoc, String sodt, float heso, float luongcb, String image, String mapb, String macv, String matdhv,int trangthai) {
         this.manv = manv;
         this.hoten = hoten;
         this.ngaysinh = ngaysinh;
@@ -36,6 +37,7 @@ public class NhanVien_model {
         this.mapb = mapb;
         this.macv = macv;
         this.matdhv = matdhv;
+        this.trangthai = trangthai;
     }
 
     public String getManv() {
@@ -141,5 +143,15 @@ public class NhanVien_model {
     public void setMatdhv(String matdhv) {
         this.matdhv = matdhv;
     }
+
+    public int getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
+    }
+    
+    
 
 }

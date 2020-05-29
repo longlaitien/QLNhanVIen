@@ -65,13 +65,16 @@
                   <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="cboHeSo" max="32767" attributes="0"/>
-                  <Component id="cboDanToc" max="32767" attributes="0"/>
-                  <Component id="cboPhongBan" max="32767" attributes="0"/>
-                  <Component id="cboChucVu" max="32767" attributes="0"/>
-                  <Component id="cboTrinhDo" max="32767" attributes="0"/>
-                  <Component id="txtLuongCB" min="-2" pref="268" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="cboHeSo" max="32767" attributes="0"/>
+                      <Component id="cboDanToc" max="32767" attributes="0"/>
+                      <Component id="cboPhongBan" max="32767" attributes="0"/>
+                      <Component id="cboChucVu" max="32767" attributes="0"/>
+                      <Component id="cboTrinhDo" max="32767" attributes="0"/>
+                      <Component id="txtLuongCB" min="-2" pref="268" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="chbTrangThai" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
@@ -137,7 +140,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnChonAnh" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="btnChonAnh" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="chbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Component id="txtLuongCB" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -404,6 +410,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="path">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="chbTrangThai">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ho&#x1ea1;t &#x111;&#x1ed9;ng"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -28,6 +28,7 @@ public class Main extends javax.swing.JFrame {
     public static String quequan, gioitinh, dantoc, sodt;
     public static String heso, luongcb;
     public static String image, mapb, macv, matdhv;
+    public static String trangthai;
     public static ArrayList<String> list_MaNV = new ArrayList<>();
     DefaultTableModel model;
     NhanVien_Controller nv;
@@ -56,7 +57,7 @@ public class Main extends javax.swing.JFrame {
 
     public void ShowPanel(JPanel pn) {
         HidePanel();
-        pn.setBounds(235, 65, 1065,460);
+        pn.setBounds(235, 65, 1065, 460);
         pn.setVisible(true);
         this.add(pn);
 
@@ -66,7 +67,7 @@ public class Main extends javax.swing.JFrame {
         if (Login.role == 1) {
             btnAdd.setEnabled(false);
             btnDelete.setEnabled(false);
-            lbUser.setText("XIN CHÀO: "+Login.user.toUpperCase());
+            lbUser.setText("XIN CHÀO: " + Login.user.toUpperCase());
             btnUpdate.setText("Thông tin");
         } else {
             lbUser.setText(Login.user.toUpperCase() + " (admin)".toLowerCase());
@@ -76,7 +77,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void DataTable() {
-        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ"};
+        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ", "Trạng thái"};
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
         tblNhanVien.setModel(model);
@@ -94,7 +95,7 @@ public class Main extends javax.swing.JFrame {
         String mapb = "";
         String macv = "";
         String matdhv = "";
-
+        String trangthai = "";
         try {
 
             for (int i = 0; i < cbo.getDataTable().size(); i++) {
@@ -156,8 +157,18 @@ public class Main extends javax.swing.JFrame {
                         matdhv = "Trung cấp";
                 }
 
+                switch (cbo.getDataTable().get(i).getTrangthai()) {
+                    case 1:
+                        trangthai = "Active";
+                        break;
+                    case 0:
+                        trangthai = "Disactive";
+                        break;
+
+                }
+
                 model.addRow(new Object[]{
-                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv
+                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv, trangthai
                 });
 //                System.out.println(mapb+macv+matdhv);
 
@@ -248,7 +259,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         pnTable.setBackground(new java.awt.Color(255, 255, 255));
-        pnTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnAdd.setBackground(new java.awt.Color(0, 102, 255));
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
@@ -524,7 +535,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 90, Short.MAX_VALUE))
+                        .addGap(0, 92, Short.MAX_VALUE))
                     .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -566,7 +577,7 @@ public class Main extends javax.swing.JFrame {
             mapb = tblNhanVien.getValueAt(selectRow, 10).toString().trim();
             macv = tblNhanVien.getValueAt(selectRow, 11).toString().trim();
             matdhv = tblNhanVien.getValueAt(selectRow, 12).toString().trim();
-
+            trangthai = tblNhanVien.getValueAt(selectRow, 13).toString().trim();
             UpdateEmployee updateEmployee = new UpdateEmployee();
             updateEmployee.setVisible(true);
         } else {
@@ -734,19 +745,19 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_lbDeparmentMouseExited
 
     private void lbChucVuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseEntered
-        lbDeparment.setBackground(new Color(153, 190, 236));
+        lbChucVu.setBackground(new Color(153, 190, 236));
     }//GEN-LAST:event_lbChucVuMouseEntered
 
     private void lbChucVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseExited
-        lbDeparment.setBackground(new Color(0, 96, 181));
+        lbChucVu.setBackground(new Color(0, 96, 181));
     }//GEN-LAST:event_lbChucVuMouseExited
 
     private void lbTrinhDoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseEntered
-        lbDeparment.setBackground(new Color(153, 190, 236));
+        lbTrinhDo.setBackground(new Color(153, 190, 236));
     }//GEN-LAST:event_lbTrinhDoMouseEntered
 
     private void lbTrinhDoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseExited
-        lbDeparment.setBackground(new Color(0, 96, 181));
+        lbTrinhDo.setBackground(new Color(0, 96, 181));
     }//GEN-LAST:event_lbTrinhDoMouseExited
 
     private void lbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseClicked

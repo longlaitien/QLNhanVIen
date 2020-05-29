@@ -117,7 +117,7 @@ public class Position_panel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnUpdate.setBackground(new java.awt.Color(0, 102, 102));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icreload.png"))); // NOI18N
@@ -204,7 +204,7 @@ public class Position_panel extends javax.swing.JPanel {
                         .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancel))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
@@ -215,7 +215,7 @@ public class Position_panel extends javax.swing.JPanel {
                     .addComponent(chbTrangThai)
                     .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +243,7 @@ public class Position_panel extends javax.swing.JPanel {
                             .addComponent(chbTrangThai)
                             .addComponent(jLabel14))
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
