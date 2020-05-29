@@ -428,6 +428,8 @@ public class Main extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(0, 96, 181));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 204));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lookup.png"))); // NOI18N
+        jLabel3.setText("TRA CỨU THÔNG TIN");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel3.setOpaque(true);
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
