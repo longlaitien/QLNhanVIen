@@ -27,6 +27,14 @@ public class Department_panel extends javax.swing.JPanel {
         initComponents();
         EnableECRUD();
         DataTable();
+        Authen();
+    }
+    public void Authen(){
+        if(Login.role == 1){
+            btnAdd.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+        }
     }
 
     public final void DataTable() {
@@ -162,6 +170,7 @@ public class Department_panel extends javax.swing.JPanel {
 
             }
         ));
+        tblPhongBan.setFillsViewportHeight(true);
         tblPhongBan.setRowHeight(30);
         tblPhongBan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

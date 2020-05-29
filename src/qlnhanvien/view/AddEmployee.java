@@ -21,7 +21,7 @@ import qlnhanvien.model.NhanVien_model;
  *
  * @author nhatnguyen
  */
-public class AddEmployee extends javax.swing.JFrame {
+public final class AddEmployee extends javax.swing.JFrame {
 
     NhanVien_Controller nv_ct = new NhanVien_Controller();
     String phongban;
@@ -305,16 +305,6 @@ public class AddEmployee extends javax.swing.JFrame {
         int n = fc.showOpenDialog(null);
         String f = fc.getSelectedFile().getAbsolutePath();
         File selected = fc.getSelectedFile();
-        //fc.showOpenDialog(null);
-        //        BufferedImage image = null;
-        //        try {
-        //            ImageIcon icon;
-        //            icon = new ImageIcon(f);
-        //            lbImage.setIcon(icon);
-        //            image = image = ImageIO.read(new File(fc.getSelectedFile().getAbsolutePath()));//get the image from file chooser and scale it to match JLabel size
-        //        } catch (IOException ex) {
-        //            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
-        //        }
         if (n == JFileChooser.APPROVE_OPTION) {
             path.setText(selected.getName());
         } else {
@@ -327,21 +317,18 @@ public class AddEmployee extends javax.swing.JFrame {
         Combo_controller cv = new Combo_controller();
         String tenpb = cboPhongBan.getSelectedItem().toString().trim();
         phongban = cv.mapb(tenpb);
-        //System.out.println(phongban);
     }//GEN-LAST:event_cboPhongBanActionPerformed
 
     private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
         Combo_controller cv = new Combo_controller();
         String tencv = cboChucVu.getSelectedItem().toString().trim();
         chucvu = cv.macv(tencv);
-        //System.out.println(chucvu);
     }//GEN-LAST:event_cboChucVuActionPerformed
 
     private void cboTrinhDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrinhDoActionPerformed
         Combo_controller cv = new Combo_controller();
         String tentd = cboTrinhDo.getSelectedItem().toString().trim();
         trinhdo = cv.matdhv(tentd);
-        //System.out.println(trinhdo);
     }//GEN-LAST:event_cboTrinhDoActionPerformed
 
     //Kiem tra mot chuoi chuyen vao co phai la so thuc hay khong

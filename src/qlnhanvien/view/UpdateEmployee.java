@@ -350,21 +350,18 @@ public class UpdateEmployee extends javax.swing.JFrame {
         Combo_controller cv = new Combo_controller();
         String tenpb = cboPhongBan.getSelectedItem().toString().trim();
         phongban = cv.mapb(tenpb);
-        System.out.println(phongban);
     }//GEN-LAST:event_cboPhongBanActionPerformed
 
     private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
         Combo_controller cv = new Combo_controller();
         String tencv = cboChucVu.getSelectedItem().toString().trim();
         chucvu = cv.macv(tencv);
-        System.out.println(chucvu);
     }//GEN-LAST:event_cboChucVuActionPerformed
 
     private void cboTrinhDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrinhDoActionPerformed
         Combo_controller cv = new Combo_controller();
         String tentd = cboTrinhDo.getSelectedItem().toString().trim();
         trinhdo = cv.matdhv(tentd);
-        System.out.println(trinhdo);
     }//GEN-LAST:event_cboTrinhDoActionPerformed
 
     private void btnChonAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonAnhMouseClicked

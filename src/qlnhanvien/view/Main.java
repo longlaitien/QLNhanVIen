@@ -32,9 +32,10 @@ public class Main extends javax.swing.JFrame {
     DefaultTableModel model;
     NhanVien_Controller nv;
 
-//    Department_panel department=new Department_panel();;
-//    Position_panel position=new Position_panel();;
-//    TrinhDo_panel trinhdo=new TrinhDo_panel();;
+    Department_panel dp = new Department_panel();
+    Position_panel ps = new Position_panel();
+    TrinhDo_panel ms = new TrinhDo_panel();
+
     public Main() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,26 +47,26 @@ public class Main extends javax.swing.JFrame {
 
     }
 
-//    public void HidePanel() {
-//       
-//
-//        position.setVisible(false);
-//        department.setVisible(false);
-//        trinhdo.setVisible(false);
-//        pnTable.setVisible(false);
-//    }
-//
-//    public void ShowPanel(JPanel pn) {
-//        HidePanel();
-//        pn.setVisible(true);
-//        pn.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
-//        this.getContentPane().add(pn);
-//    }
+    public void HidePanel() {
+        pnTable.setVisible(false);
+        this.dp.setVisible(false);
+        this.ps.setVisible(false);
+        this.ms.setVisible(false);
+    }
+
+    public void ShowPanel(JPanel pn) {
+        HidePanel();
+        pn.setBounds(235, 65, 1065,460);
+        pn.setVisible(true);
+        this.add(pn);
+
+    }
+
     public void Authen() {
         if (Login.role == 1) {
             btnAdd.setEnabled(false);
             btnDelete.setEnabled(false);
-            lbUser.setText(Login.user.toUpperCase() + " (nhân viên)".toLowerCase());
+            lbUser.setText("XIN CHÀO: "+Login.user.toUpperCase());
             btnUpdate.setText("Thông tin");
         } else {
             lbUser.setText(Login.user.toUpperCase() + " (admin)".toLowerCase());
@@ -208,11 +209,6 @@ public class Main extends javax.swing.JFrame {
         lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ichome.png"))); // NOI18N
         lbLogo.setText("QUẢN LÝ NHÂN VIÊN");
         lbLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lbLogo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbLogoMouseClicked(evt);
-            }
-        });
 
         lbLogout.setBackground(new java.awt.Color(0, 96, 181));
         lbLogout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -491,7 +487,7 @@ public class Main extends javax.swing.JFrame {
             pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMenuLayout.createSequentialGroup()
                 .addComponent(lbUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbDeparment, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(lbChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,56 +522,17 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 90, Short.MAX_VALUE))
+                    .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void lbChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseClicked
-        pnTable.setVisible(false);
-        Position_panel ps = new Position_panel();
-        this.getContentPane().add(ps);
-        ps.setVisible(true);
-        ps.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
-        this.getContentPane().add(ps);
-
-    }//GEN-LAST:event_lbChucVuMouseClicked
-
-    private void lbDeparmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseClicked
-        pnTable.setVisible(false);
-        Department_panel dp = new Department_panel();
-        this.getContentPane().add(dp);
-        dp.setVisible(true);
-        dp.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
-        this.getContentPane().add(dp);
-
-
-    }//GEN-LAST:event_lbDeparmentMouseClicked
-
-    private void lbDeparmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseEntered
-
-        lbDeparment.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_lbDeparmentMouseEntered
-
-    private void lbDeparmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseExited
-
-        lbDeparment.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_lbDeparmentMouseExited
-
-    private void lbChucVuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseEntered
-
-        lbChucVu.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_lbChucVuMouseEntered
-
-    private void lbChucVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseExited
-
-        lbChucVu.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_lbChucVuMouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
 
@@ -590,91 +547,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setBackground(new Color(153, 190, 236));
     }//GEN-LAST:event_jLabel3MouseEntered
-
-    private void lbUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseEntered
-
-        lbUser.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_lbUserMouseEntered
-
-    private void lbUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseExited
-
-        lbUser.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_lbUserMouseExited
-
-    private void lbTrinhDoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseExited
-
-        lbTrinhDo.setBackground(new Color(0, 96, 181));
-    }//GEN-LAST:event_lbTrinhDoMouseExited
-
-    private void lbTrinhDoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseEntered
-
-        lbTrinhDo.setBackground(new Color(153, 190, 236));
-    }//GEN-LAST:event_lbTrinhDoMouseEntered
-
-    private void lbTrinhDoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseClicked
-        pnTable.setVisible(false);
-        TrinhDo_panel td = new TrinhDo_panel();
-        this.getContentPane().add(td);
-        td.setVisible(true);
-        td.setBounds(235, 65, pnTable.getWidth(), pnTable.getHeight());
-        this.getContentPane().add(td);
-    }//GEN-LAST:event_lbTrinhDoMouseClicked
-
-    private void lbLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLogoMouseClicked
-
-//        int x = this.pnMenu.getWidth();
-//        if (x == 215) {
-//            pnMenu.setSize(215, 400);
-//            Thread th = new Thread() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        for (int i = 215; i >= 0; i--) {
-//                            Thread.sleep(1);
-//                            pnMenu.setSize(i, 400);
-//                            pnTable.setBounds(i + 10, 65, pnTable.getWidth() + i, pnTable.getHeight());
-//                        }
-//                        tblNhanVien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-//                        tblNhanVien.setSize(new Dimension(pnTable.getWidth(), pnTable.getHeight()));
-//
-//                        TableColumnModel tcm = tblNhanVien.getColumnModel();
-//
-//                        int delta = pnTable.getWidth() - tcm.getTotalColumnWidth();
-//                        int w = delta / tblNhanVien.getColumnCount();
-//                        int s = pnTable.getWidth() / tblNhanVien.getColumnCount();
-//
-//                        for (int i = 0; i < tblNhanVien.getColumnCount(); i++) {
-//                            tcm.getColumn(i).setPreferredWidth(s);
-//                        }
-//
-//                    } catch (Exception e) {
-//                        System.out.println("Lỗi hide menu");
-//                    }
-//
-//                }
-//
-//            };
-//            th.start();
-//
-//        } else if (x == 0) {
-//            Thread th = new Thread() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        for (int i = 0; i <= 215; i++) {
-//                            Thread.sleep(1);
-//                            pnMenu.setSize(i, 400);
-//                            pnTable.setBounds(i + 20, 65, pnTable.getWidth() - i, pnTable.getHeight());
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.println("Lỗi hide menu");
-//                    }
-//                }
-//            };
-//            th.start();
-//        }
-
-    }//GEN-LAST:event_lbLogoMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
@@ -791,20 +663,13 @@ public class Main extends javax.swing.JFrame {
                 model.addRow(new Object[]{
                     manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv
                 });
-//                System.out.println(mapb+macv+matdhv);
-
             }
         } catch (Exception e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_btnSearchMouseClicked
-//    public void getDataTableColumn() {
-//        int amountRow = tblNhanVien.getSelectedRowCount();
-//        list_MaNV = new ArrayList<>();
-//        for (int i = 0; i < amountRow; i++) {
-//            list_MaNV.add(tblNhanVien.getValueAt(i, 0).toString().trim());
-//        }
-//    }
+
+    //Logout ra man hinh chinh cua ung ung
     private void lbLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLogoutMouseClicked
         Login lg = new Login();
         lg.setVisible(true);
@@ -819,12 +684,13 @@ public class Main extends javax.swing.JFrame {
         lbLogout.setBackground(new Color(0, 96, 181));
     }//GEN-LAST:event_lbLogoutMouseExited
 
+    //Hien thi form them nhan vien
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
         AddEmployee obj = new AddEmployee();
         obj.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
+    //Xoa nhan vien khoi danh sach
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectRow = tblNhanVien.getSelectedRow();
         if (selectRow >= 0) {
@@ -847,10 +713,53 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void lbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseClicked
-        pnTable.setVisible(true);
+    private void lbTrinhDoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseClicked
+        ShowPanel(ms);
+    }//GEN-LAST:event_lbTrinhDoMouseClicked
 
+    private void lbChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseClicked
+        ShowPanel(ps);
+    }//GEN-LAST:event_lbChucVuMouseClicked
+
+    private void lbDeparmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseClicked
+        ShowPanel(dp);
+    }//GEN-LAST:event_lbDeparmentMouseClicked
+
+    private void lbDeparmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseEntered
+        lbDeparment.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbDeparmentMouseEntered
+
+    private void lbDeparmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeparmentMouseExited
+        lbDeparment.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbDeparmentMouseExited
+
+    private void lbChucVuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseEntered
+        lbDeparment.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbChucVuMouseEntered
+
+    private void lbChucVuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbChucVuMouseExited
+        lbDeparment.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbChucVuMouseExited
+
+    private void lbTrinhDoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseEntered
+        lbDeparment.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbTrinhDoMouseEntered
+
+    private void lbTrinhDoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrinhDoMouseExited
+        lbDeparment.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbTrinhDoMouseExited
+
+    private void lbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseClicked
+        ShowPanel(pnTable);
     }//GEN-LAST:event_lbUserMouseClicked
+
+    private void lbUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseEntered
+        lbDeparment.setBackground(new Color(153, 190, 236));
+    }//GEN-LAST:event_lbUserMouseEntered
+
+    private void lbUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUserMouseExited
+        lbDeparment.setBackground(new Color(0, 96, 181));
+    }//GEN-LAST:event_lbUserMouseExited
 
     /**
      * @param args the command line arguments

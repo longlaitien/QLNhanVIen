@@ -24,8 +24,17 @@ public class Position_panel extends javax.swing.JPanel {
 
     public Position_panel() {
         initComponents();
-        DataTable();
         EnableECRUD();
+        DataTable();
+        Authen();
+    }
+
+    public void Authen() {
+        if (Login.role == 1) {
+            btnAdd.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+        }
     }
 
     public final void DataTable() {
@@ -137,6 +146,7 @@ public class Position_panel extends javax.swing.JPanel {
 
             }
         ));
+        tblChucVu.setFillsViewportHeight(true);
         tblChucVu.setRowHeight(30);
         tblChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

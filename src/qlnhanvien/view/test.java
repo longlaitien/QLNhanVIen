@@ -5,40 +5,40 @@
  */
 package qlnhanvien.view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import qlnhanvien.controller.TrinhDo_controller;
+import qlnhanvien.model.Trinhdo_model;
 
 /**
  *
  * @author nhatnguyen
  */
-public class TrinhDo_panel extends javax.swing.JPanel {
+public class test extends javax.swing.JFrame {
 
-    
+    TrinhDo_controller ctrl = new TrinhDo_controller();
+
     int flag = 0;
 
-    public TrinhDo_panel() {
+    /**
+     * Creates new form test
+     */
+    public test() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        showDataTable();
         EnableECRUD();
-        DataTable();
-        Authen();
     }
 
-    public void Authen(){
-        if(Login.role == 1){
-            btnAdd.setEnabled(false);
-            btnUpdate.setEnabled(false);
-            btnDelete.setEnabled(false);
-        }
-    }
-    public void DataTable() {
+    public void showDataTable() {
         String[] columns = {"Mã trình độ", "Tên trình độ", "Trạng thái"};
-        DefaultTableModel model;
-        model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
         tblTrinhDo.setModel(model);
-        TrinhDo_controller ctrl = new TrinhDo_controller();
+
         String matdhv = "";
         String tentd = "";
         String trangthai = "";
@@ -92,8 +92,11 @@ public class TrinhDo_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnCancel = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         txtMaTD = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtTenTD = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
@@ -102,12 +105,16 @@ public class TrinhDo_panel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         chbTrangThai = new javax.swing.JCheckBox();
-        btnCancel = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iccancel.png"))); // NOI18N
+        btnCancel.setText("Hủy");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(255, 0, 0));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icdelete.png"))); // NOI18N
@@ -117,6 +124,17 @@ public class TrinhDo_panel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+
+        btnUpdate.setBackground(new java.awt.Color(0, 102, 102));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icreload.png"))); // NOI18N
+        btnUpdate.setText("Sửa");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Mã trình độ:");
 
         jLabel11.setText("Tên trình độ:");
 
@@ -138,7 +156,6 @@ public class TrinhDo_panel extends javax.swing.JPanel {
 
             }
         ));
-        tblTrinhDo.setFillsViewportHeight(true);
         tblTrinhDo.setRowHeight(30);
         tblTrinhDo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,27 +176,8 @@ public class TrinhDo_panel extends javax.swing.JPanel {
 
         chbTrangThai.setText("Còn hoạt động");
 
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iccancel.png"))); // NOI18N
-        btnCancel.setText("Hủy");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setBackground(new java.awt.Color(0, 102, 102));
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icreload.png"))); // NOI18N
-        btnUpdate.setText("Sửa");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("Mã trình độ:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -194,7 +192,7 @@ public class TrinhDo_panel extends javax.swing.JPanel {
                         .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancel))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
@@ -205,7 +203,7 @@ public class TrinhDo_panel extends javax.swing.JPanel {
                     .addComponent(chbTrangThai)
                     .addComponent(txtMaTD, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                     .addComponent(txtTenTD))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,12 +231,17 @@ public class TrinhDo_panel extends javax.swing.JPanel {
                             .addComponent(chbTrangThai)
                             .addComponent(jLabel14))
                         .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        EnableECRUD();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        TrinhDo_controller ctrl = new TrinhDo_controller();
         String matdhv = txtMaTD.getText();
         String tentd = txtTenTD.getText();
         int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -248,12 +251,18 @@ public class TrinhDo_panel extends javax.swing.JPanel {
             int rowDeleted = ctrl.get_Delete_TrinhDo(matdhv);
             if (rowDeleted > 0) {
                 JOptionPane.showMessageDialog(this, "Xóa trình độ thành công");
-                DataTable();
+                showDataTable();
             } else {
                 JOptionPane.showMessageDialog(this, "Xóa trình độ thất bại");
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        flag = 2;
+        DisableECRUD();
+        txtMaTD.setEnabled(false);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         flag = 1;
@@ -272,7 +281,6 @@ public class TrinhDo_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_tblTrinhDoMouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        TrinhDo_controller ctrl = new TrinhDo_controller();
         String matdhv = txtMaTD.getText().trim();
         String tentd = txtTenTD.getText();
         int trangthai;
@@ -293,7 +301,7 @@ public class TrinhDo_panel extends javax.swing.JPanel {
                     if (rowInserted > 0) {
                         JOptionPane.showMessageDialog(this, "Thêm trình độ thành công");
                         EnableECRUD();
-                        DataTable();
+                        showDataTable();
 
                     } else {
                         JOptionPane.showMessageDialog(this, "Mã trình độ đã tồn tại");
@@ -305,7 +313,7 @@ public class TrinhDo_panel extends javax.swing.JPanel {
                     if (rowUpdated > 0) {
                         JOptionPane.showMessageDialog(this, "Sửa trình độ thành công");
                         EnableECRUD();
-                        DataTable();
+                        showDataTable();
 
                     } else {
                         JOptionPane.showMessageDialog(this, "Sửa trình độ thất bại!");
@@ -315,16 +323,40 @@ public class TrinhDo_panel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        EnableECRUD();
-    }//GEN-LAST:event_btnCancelActionPerformed
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        flag = 2;
-        DisableECRUD();
-        txtMaTD.setEnabled(false);
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new test().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
