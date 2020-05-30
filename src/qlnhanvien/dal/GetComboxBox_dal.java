@@ -29,19 +29,15 @@ public class GetComboxBox_dal {
     Trinhdo_model td;
     Bacluong_model bl;
 
-    public GetComboxBox_dal() {
-
-    }
-
     //Lay du lieu bang ChucVu do vao ComboBox
     public ArrayList<Chucvu_model> Combo_ChucVu() {
         ArrayList<Chucvu_model> list = new ArrayList<>();
-        String sql = "SELECT macv,tencv,trangthai FROM ChucVu WHERE trangthai  = 1";
+        String sql = "SELECT macv,tencv,trangthai2 FROM ChucVu WHERE trangthai2 = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                cv = new Chucvu_model(rs.getString("macv"), rs.getString("tencv"),rs.getInt("trangthai"));
+                cv = new Chucvu_model(rs.getString("macv"), rs.getString("tencv"),rs.getInt("trangthai2"));
                 list.add(cv);
             }
         } catch (SQLException ex) {
@@ -53,12 +49,12 @@ public class GetComboxBox_dal {
     //Lay du lieu bang PhongBan do vao ComboBox
     public ArrayList<Phongban_model> Combo_PhongBan() {
         ArrayList<Phongban_model> list = new ArrayList<>();
-        String sql = "SELECT mapb,tenpb,diachi,sodtpb,trangthai FROM PhongBan WHERE trangthai = 1";
+        String sql = "SELECT mapb,tenpb,diachi,sodtpb,trangthai1 FROM PhongBan WHERE trangthai1 = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"),rs.getInt("trangthai"));
+                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"),rs.getInt("trangthai1"));
                 list.add(pb);
             }
         } catch (SQLException ex) {
@@ -70,12 +66,12 @@ public class GetComboxBox_dal {
     //Lay du lieu bang TrinhDo vao ComboBox
     public ArrayList<Trinhdo_model> Combo_TrinhDo() {
         ArrayList<Trinhdo_model> list = new ArrayList<>();
-        String sql = "SELECT matdhv,tentd,trangthai FROM TrinhDo WHERE trangthai = 1";
+        String sql = "SELECT matdhv,tentd,trangthai3 FROM TrinhDo WHERE trangthai3 = 1";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                td = new Trinhdo_model(rs.getString("matdhv"), rs.getString("tentd"),rs.getInt("trangthai"));
+                td = new Trinhdo_model(rs.getString("matdhv"), rs.getString("tentd"),rs.getInt("trangthai3"));
                 list.add(td);
             }
         } catch (SQLException ex) {
@@ -86,18 +82,23 @@ public class GetComboxBox_dal {
 
     //Lay du lieu do vao Table trong giao dien chinh
     public ArrayList<NhanVien_model> DataTable() {
-        ArrayList<NhanVien_model> list = new ArrayList<>();
-        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv,trangthai FROM NhanVien";
+        ArrayList<NhanVien_model> listModel = new ArrayList<>();
+
+        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, tenpb,tencv,tentd,trangthai FROM (NhanVien"
+                + " inner join PhongBan on (NhanVien.mapb = PhongBan.mapb)"
+                + " inner join ChucVu on (NhanVien.macv = ChucVu.macv)"
+                + " inner join TrinhDo on (NhanVien.matdhv = TrinhDo.matdhv))";
         try {
-            Statement stm = SQLConnect.DBConnect().createStatement();
-            ResultSet rs = stm.executeQuery(sql);
+            Statement pre = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = pre.executeQuery(sql);
             while (rs.next()) {
-                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"),rs.getInt("trangthai"));
-                list.add(nv);
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("tenpb"), rs.getString("tencv"), rs.getString("tentd"), rs.getInt("trangthai"));
+                listModel.add(nv);
             }
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+        return listModel;
     }
 
     //3 hàm sau để lấy về giá trị khi click chuột vào combox ở form thêm và sửa nhân viên

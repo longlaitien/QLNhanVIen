@@ -24,12 +24,12 @@ public class PhongBan_dal {
 
     public ArrayList<Phongban_model> DataTable() {
         ArrayList<Phongban_model> list = new ArrayList<>();
-        String sql = "SELECT mapb,tenpb,diachi,sodtpb,trangthai FROM PhongBan";
+        String sql = "SELECT * FROM PhongBan";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"), rs.getInt("trangthai"));
+                pb = new Phongban_model(rs.getString("mapb"), rs.getString("tenpb"), rs.getString("diachi"), rs.getString("sodtpb"), rs.getInt("trangthai1"));
                 list.add(pb);
             }
         } catch (SQLException ex) {
@@ -59,7 +59,7 @@ public class PhongBan_dal {
 
     public int Update_PhongBan(String mapb, String tenpb, String diachi, String sodtpb, int trangthai) {
         int rowUpdated = 0;
-        String sql = "UPDATE PhongBan SET tenpb = ?,diachi = ?,sodtpb = ?,trangthai = ? WHERE mapb = ?";
+        String sql = "UPDATE PhongBan SET tenpb = ?,diachi = ?,sodtpb = ?,trangthai1 = ? WHERE mapb = ?";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
             pre.setString(1, tenpb);

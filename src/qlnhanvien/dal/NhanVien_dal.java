@@ -93,13 +93,16 @@ public class NhanVien_dal {
         NhanVien_model nv = new NhanVien_model();
         ArrayList<NhanVien_model> listModel = new ArrayList<>();
 
-        String sql = "SELECT * FROM NhanVien WHERE manv LIKE '%" + tk_nv + "%'";
+        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, tenpb,tencv,tentd,trangthai FROM (NhanVien"
+                + " inner join PhongBan on (NhanVien.mapb = PhongBan.mapb)"
+                + " inner join ChucVu on (NhanVien.macv = ChucVu.macv)"
+                + " inner join TrinhDo on (NhanVien.matdhv = TrinhDo.matdhv))"
+                + " WHERE manv LIKE '%" + tk_nv + "%'";
         try {
-            Statement stm;
-            stm = SQLConnect.DBConnect().createStatement();
-            ResultSet rs = stm.executeQuery(sql);
+            Statement pre = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = pre.executeQuery(sql);
             while (rs.next()) {
-                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("mapb"), rs.getString("macv"), rs.getString("matdhv"),rs.getInt("trangthai"));
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("tenpb"), rs.getString("tencv"), rs.getString("tentd"), rs.getInt("trangthai"));
                 listModel.add(nv);
             }
         } catch (SQLException ex) {
@@ -107,4 +110,64 @@ public class NhanVien_dal {
         }
         return listModel;
     }
+    
+    public ArrayList<NhanVien_model> Lookup_NhanVien(String tk_nv) {
+        NhanVien_model nv = new NhanVien_model();
+        ArrayList<NhanVien_model> listModel = new ArrayList<>();
+
+        String sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, tenpb,tencv,tentd,trangthai FROM (NhanVien"
+                + " inner join PhongBan on (NhanVien.mapb = PhongBan.mapb)"
+                + " inner join ChucVu on (NhanVien.macv = ChucVu.macv)"
+                + " inner join TrinhDo on (NhanVien.matdhv = TrinhDo.matdhv))"
+                + " WHERE manv ='"+ tk_nv +"'";
+        try {
+            Statement pre = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = pre.executeQuery(sql);
+            while (rs.next()) {
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("tenpb"), rs.getString("tencv"), rs.getString("tentd"), rs.getInt("trangthai"));
+                listModel.add(nv);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listModel;
+    }
+
+    public ArrayList<NhanVien_model> Filter_Gender(String gender) {
+        NhanVien_model nv = new NhanVien_model();
+        ArrayList<NhanVien_model> listModel = new ArrayList<>();
+        String sql;
+        if (gender.equals("Tất cả")) {
+            sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, tenpb,tencv,tentd,trangthai FROM (NhanVien"
+                + " inner join PhongBan on (NhanVien.mapb = PhongBan.mapb)"
+                + " inner join ChucVu on (NhanVien.macv = ChucVu.macv)"
+                + " inner join TrinhDo on (NhanVien.matdhv = TrinhDo.matdhv))";
+            
+        } else {
+            sql = "SELECT manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, tenpb,tencv,tentd,trangthai FROM (NhanVien"
+                + " inner join PhongBan on (NhanVien.mapb = PhongBan.mapb)"
+                + " inner join ChucVu on (NhanVien.macv = ChucVu.macv)"
+                + " inner join TrinhDo on (NhanVien.matdhv = TrinhDo.matdhv))"
+                + " WHERE gioitinh =N'"+ gender +"'";
+        }
+        try {
+            Statement stm;
+            stm = SQLConnect.DBConnect().createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                nv = new NhanVien_model(rs.getString("manv"), rs.getString("hoten"), rs.getString("ngaysinh"), rs.getString("quequan"), rs.getString("gioitinh"), rs.getString("dantoc"), rs.getString("sodt"), rs.getFloat("heso"), rs.getFloat("luongcb"), rs.getString("image"), rs.getString("tenpb"), rs.getString("tencv"), rs.getString("tentd"), rs.getInt("trangthai"));
+                listModel.add(nv);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listModel;
+    }
+
+//    public static void main(String[] args) {
+//        NhanVien_dal obj = new NhanVien_dal();
+//        ArrayList<NhanVien_model> list = new ArrayList<>();
+//        obj.Filter_Gender("Nam");
+//        
+//    }
 }

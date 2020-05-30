@@ -29,7 +29,7 @@ public class TrinhDo_dal {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                td = new Trinhdo_model(rs.getString("matdhv"), rs.getString("tentd"), rs.getInt("trangthai"));
+                td = new Trinhdo_model(rs.getString("matdhv"), rs.getString("tentd"), rs.getInt("trangthai3"));
                 list.add(td);
             }
         } catch (SQLException ex) {
@@ -38,14 +38,14 @@ public class TrinhDo_dal {
         return list;
     }
 
-    public int Insert_TrinhDo(String matdhv, String tentd, int trangthai) {
+    public int Insert_TrinhDo(String matdhv, String tentd, int trangthai3) {
         int rowInserted = 0;
         String sql = "INSERT INTO TrinhDo VALUES (?,?,?)";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
             pre.setString(1, matdhv);
             pre.setString(2, tentd);
-            pre.setInt(3, trangthai);
+            pre.setInt(3, trangthai3);
 
             rowInserted = pre.executeUpdate();
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public class TrinhDo_dal {
 
     public int Update_TrinhDo(String matdhv, String tentd, int trangthai) {
         int rowUpdated = 0;
-        String sql = "UPDATE TrinhDo SET tentd = ?,trangthai = ? WHERE matdhv= ?";
+        String sql = "UPDATE TrinhDo SET tentd = ?,trangthai3 = ? WHERE matdhv= ?";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
             pre.setString(1, tentd);

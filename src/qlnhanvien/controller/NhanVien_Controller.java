@@ -20,16 +20,24 @@ public class NhanVien_Controller {
     public int InsertNV(NhanVien_model nvmodel) {
         return nv.Insert_Nhanvien(nvmodel);
     }
-    
-     public int UpdateNV(NhanVien_model nvmodel) {
+
+    public int UpdateNV(NhanVien_model nvmodel) {
         return nv.Update_Nhanvien(nvmodel);
     }
-     
-    public int DeleteNV(String manv){
+
+    public int DeleteNV(String manv) {
         return nv.Delete_NhanVien(manv);
     }
-    
-    public ArrayList<NhanVien_model> TimKiem(String tk_nv){
+
+    public ArrayList<NhanVien_model> TimKiem(String tk_nv) {
         return nv.TimKiem_NhanVien(tk_nv);
+    }
+
+    public ArrayList<NhanVien_model> Lookup(String tk_nv) {
+        return nv.TimKiem_NhanVien(tk_nv);
+    }
+
+    public ArrayList<NhanVien_model> Filter(String gender) {
+        return nv.Filter_Gender(gender);
     }
 }

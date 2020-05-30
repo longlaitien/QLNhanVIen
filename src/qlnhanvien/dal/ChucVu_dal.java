@@ -23,12 +23,12 @@ public class ChucVu_dal {
     
     public ArrayList<Chucvu_model> DataTable() {
         ArrayList<Chucvu_model> list = new ArrayList<>();
-        String sql = "SELECT macv,tencv,trangthai FROM ChucVu";
+        String sql = "SELECT * FROM ChucVu";
         try {
             Statement stm = SQLConnect.DBConnect().createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                cv = new Chucvu_model(rs.getString("macv"), rs.getString("tencv"), rs.getInt("trangthai"));
+                cv = new Chucvu_model(rs.getString("macv"), rs.getString("tencv"), rs.getInt("trangthai2"));
                 list.add(cv);
             }
         } catch (SQLException ex) {
@@ -37,14 +37,14 @@ public class ChucVu_dal {
         return list;
     }
 
-    public int Insert_ChucVu(String macv, String tencv, int trangthai) {
+    public int Insert_ChucVu(String macv, String tencv, int trangthai2) {
         int rowInserted = 0;
         String sql = "INSERT INTO ChucVu VALUES (?,?,?)";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
             pre.setString(1, macv);
             pre.setString(2, tencv);
-            pre.setInt(3, trangthai);
+            pre.setInt(3, trangthai2);
 
             rowInserted = pre.executeUpdate();
         } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class ChucVu_dal {
 
     public int Update_ChucVu(String macv, String tencv, int trangthai) {
         int rowUpdated = 0;
-        String sql = "UPDATE ChucVu SET tencv = ?,trangthai = ? WHERE macv = ?";
+        String sql = "UPDATE ChucVu SET tencv = ?,trangthai2 = ? WHERE macv = ?";
         try {
             PreparedStatement pre = SQLConnect.DBConnect().prepareStatement(sql);
             pre.setString(1, tencv);

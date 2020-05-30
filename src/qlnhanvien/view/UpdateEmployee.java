@@ -154,6 +154,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         lbHeader.setBackground(new java.awt.Color(0, 96, 181));
         lbHeader.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbHeader.setForeground(new java.awt.Color(255, 255, 255));
+        lbHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHeader.setText("SỬA THÔNG TIN NHÂN VIÊN");
         lbHeader.setOpaque(true);
         lbHeader.setPreferredSize(new java.awt.Dimension(162, 22));
@@ -187,7 +188,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
         cboGioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nam", "Nữ" }));
 
         btnChonAnh.setBackground(new java.awt.Color(0, 96, 181));
-        btnChonAnh.setText("Chọn ảnh");
+        btnChonAnh.setText("Chọn ảnh (không bắt buộc)");
         btnChonAnh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnChonAnhMouseClicked(evt);
@@ -248,7 +249,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lbHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -274,7 +275,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     .addComponent(txtNgaySinh)
                     .addComponent(txtMaNV)
                     .addComponent(txtHoTen))
-                .addGap(22, 22, 22)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
@@ -282,7 +283,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14))
-                .addGap(22, 22, 22)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cboHeSo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -292,7 +293,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                         .addComponent(cboTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtLuongCB, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(chbTrangThai))
-                .addGap(28, 28, 28))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +357,7 @@ public class UpdateEmployee extends javax.swing.JFrame {
                     .addComponent(btnLuu)
                     .addComponent(btnHuy)
                     .addComponent(btnThoat))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -439,8 +440,8 @@ public class UpdateEmployee extends javax.swing.JFrame {
             nv.setMapb(phongban.trim());
             nv.setMacv(chucvu.trim());
             nv.setMatdhv(trinhdo.trim());
-            File img = new File(image_path_update);
-            img.renameTo(new File("C:\\Users\\THINKPAD\\Documents\\GitHub\\QLNhanVien\\src\\images\\avatar\\" + img.getName()));
+//            File img = new File(image_path_update);
+//            img.renameTo(new File("C:\\Users\\THINKPAD\\Documents\\GitHub\\QLNhanVien\\src\\images\\avatar\\" + img.getName()));
             if (chbTrangThai.isSelected()) {
                 nv.setTrangthai(1);
             } else {

@@ -13,7 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import qlnhanvien.controller.Combo_controller;
 import qlnhanvien.controller.NhanVien_Controller;
 
@@ -30,12 +32,12 @@ public class Main extends javax.swing.JFrame {
     public static String image, mapb, macv, matdhv;
     public static String trangthai;
     public static ArrayList<String> list_MaNV = new ArrayList<>();
-    DefaultTableModel model;
     NhanVien_Controller nv;
-
+    DefaultTableModel model;
     Department_panel dp = new Department_panel();
     Position_panel ps = new Position_panel();
     TrinhDo_panel ms = new TrinhDo_panel();
+    DetailInfor_panel dt = new DetailInfor_panel();
 
     public Main() {
         initComponents();
@@ -53,11 +55,12 @@ public class Main extends javax.swing.JFrame {
         this.dp.setVisible(false);
         this.ps.setVisible(false);
         this.ms.setVisible(false);
+        this.dt.setVisible(false);
     }
 
     public void ShowPanel(JPanel pn) {
         HidePanel();
-        pn.setBounds(235, 65, 1065, 460);
+        pn.setBounds(235, 65, 1067, 500);
         pn.setVisible(true);
         this.add(pn);
 
@@ -110,53 +113,18 @@ public class Main extends javax.swing.JFrame {
                 heso = cbo.getDataTable().get(i).getHeso();
                 luongcb = cbo.getDataTable().get(i).getLuongcb();
                 image = cbo.getDataTable().get(i).getImage();
-                switch (cbo.getDataTable().get(i).getMapb().trim()) {
-                    case "pb1":
-                        mapb = "Phòng phát triển";
+                mapb = cbo.getDataTable().get(i).getMapb();
+                macv = cbo.getDataTable().get(i).getMacv();
+                matdhv = cbo.getDataTable().get(i).getMatdhv();
+                switch (cbo.getDataTable().get(i).getTrangthai()) {
+                    case 1:
+                        trangthai = "Active";
                         break;
-                    case "pb2":
-                        mapb = "Phòng nhân sự";
+                    case 0:
+                        trangthai = "Disactive";
                         break;
-                    case "pb3":
-                        mapb = "Phòng marketing";
-                        break;
-                    case "pb4":
-                        mapb = "Phòng kế toán";
-                        break;
-                }
 
-                switch (cbo.getDataTable().get(i).getMacv().trim()) {
-                    case "cv1":
-                        macv = "Giám đốc";
-                        break;
-                    case "cv2":
-                        macv = "Trưởng phòng";
-                        break;
-                    case "cv3":
-                        macv = "Phó trưởng phòng";
-                        break;
-                    case "cv4":
-                        macv = "Nhân viên";
-                        break;
-                    case "cv5":
-                        macv = "Thực tập sinh";
-                        break;
                 }
-
-                switch (cbo.getDataTable().get(i).getMatdhv().trim()) {
-                    case "td1":
-                        matdhv = "Caohọc";
-                        break;
-                    case "td2":
-                        matdhv = "Đại học";
-                        break;
-                    case "td3":
-                        matdhv = "Cao đẳng";
-                        break;
-                    case "td4":
-                        matdhv = "Trung cấp";
-                }
-
                 switch (cbo.getDataTable().get(i).getTrangthai()) {
                     case 1:
                         trangthai = "Active";
@@ -199,6 +167,8 @@ public class Main extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        cboFilter = new javax.swing.JComboBox();
+        bntFilter = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
@@ -210,6 +180,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("QUẢN LÝ NHÂN VIÊN");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 96, 181));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -313,6 +284,19 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblNhanVien);
         tblNhanVien.getAccessibleContext().setAccessibleParent(pnTable);
 
+        txtSearch.setForeground(new java.awt.Color(204, 204, 204));
+        txtSearch.setText("Nhập mã nhân viên...");
+        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSearchMouseClicked(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+        });
+
         btnSearch.setBackground(new java.awt.Color(0, 102, 255));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icsearch.png"))); // NOI18N
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,6 +309,17 @@ public class Main extends javax.swing.JFrame {
         btnReset.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnResetMouseClicked(evt);
+            }
+        });
+
+        cboFilter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất cả", "Nam", "Nữ" }));
+        cboFilter.setLightWeightPopupEnabled(false);
+
+        bntFilter.setBackground(new java.awt.Color(255, 153, 0));
+        bntFilter.setText("Lọc");
+        bntFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntFilterActionPerformed(evt);
             }
         });
 
@@ -342,6 +337,10 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(cboFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bntFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -349,15 +348,17 @@ public class Main extends javax.swing.JFrame {
         pnTableLayout.setVerticalGroup(
             pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnTableLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAdd)
-                        .addComponent(btnUpdate)
-                        .addComponent(btnDelete)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSearch))
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cboFilter, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDelete)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch))
+                        .addComponent(bntFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
         );
@@ -508,7 +509,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(lbTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -534,12 +535,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 92, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -548,7 +547,7 @@ public class Main extends javax.swing.JFrame {
 
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-
+        ShowPanel(dt);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
@@ -592,7 +591,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetMouseClicked
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
-        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ"};
+        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ", "Trạng thái"};
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
         tblNhanVien.setModel(model);
@@ -609,7 +608,7 @@ public class Main extends javax.swing.JFrame {
         String mapb = "";
         String macv = "";
         String matdhv = "";
-
+        String trangthai = null;
         String tk_nv = txtSearch.getText();
         try {
 
@@ -626,55 +625,21 @@ public class Main extends javax.swing.JFrame {
                 luongcb = nv.TimKiem(tk_nv).get(i).getLuongcb();
                 image = nv.TimKiem(tk_nv).get(i).getImage();
 
-                switch (nv.TimKiem(tk_nv).get(i).getMapb().trim()) {
-                    case "pb1":
-                        mapb = "Phòng phát triển";
+                mapb = nv.TimKiem(tk_nv).get(i).getMapb();
+                macv = nv.TimKiem(tk_nv).get(i).getMacv();
+                matdhv = nv.TimKiem(tk_nv).get(i).getMatdhv();
+                switch (nv.TimKiem(tk_nv).get(i).getTrangthai()) {
+                    case 1:
+                        trangthai = "Active";
                         break;
-                    case "pb2":
-                        mapb = "Phòng nhân sự";
+                    case 0:
+                        trangthai = "Disactive";
                         break;
-                    case "pb3":
-                        mapb = "Phòng marketing";
-                        break;
-                    case "pb4":
-                        mapb = "Phòng kế toán";
-                        break;
-                }
 
-                switch (nv.TimKiem(tk_nv).get(i).getMacv().trim()) {
-                    case "cv1":
-                        macv = "Giám đốc";
-                        break;
-                    case "cv2":
-                        macv = "Trưởng phòng";
-                        break;
-                    case "cv3":
-                        macv = "Phó trưởng phòng";
-                        break;
-                    case "cv4":
-                        macv = "Nhân viên";
-                        break;
-                    case "cv5":
-                        macv = "Thực tập sinh";
-                        break;
-                }
-
-                switch (nv.TimKiem(tk_nv).get(i).getMatdhv().trim()) {
-                    case "td1":
-                        matdhv = "Cao học";
-                        break;
-                    case "td2":
-                        matdhv = "Đại học";
-                        break;
-                    case "td3":
-                        matdhv = "Cao đẳng";
-                        break;
-                    case "td4":
-                        matdhv = "Trung cấp";
                 }
 
                 model.addRow(new Object[]{
-                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv
+                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv, trangthai
                 });
             }
         } catch (Exception e) {
@@ -774,6 +739,78 @@ public class Main extends javax.swing.JFrame {
         lbDeparment.setBackground(new Color(0, 96, 181));
     }//GEN-LAST:event_lbUserMouseExited
 
+    private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
+        txtSearch.setText("");
+    }//GEN-LAST:event_txtSearchMouseClicked
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        txtSearch.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void bntFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFilterActionPerformed
+        String[] columns = {"Mã NV", "Họ tên", "Ngày sinh", "Quê quán", "Giới tính", "Dân tộc", "Số ĐT", "Hệ số", "Lương CB", "Ảnh", "Phòng ban", "Chức vụ", "Trình độ", "Trạng thái"};
+        model = new DefaultTableModel();
+        model.setColumnIdentifiers(columns);
+        tblNhanVien.setModel(model);
+        String manv;
+        String hoten;
+        String ngaysinh;
+        String quequan;
+        String gioitinh;
+        String dantoc;
+        String sodt;
+        float heso;
+        float luongcb;
+        String image;
+        String mapb = "";
+        String macv = "";
+        String matdhv = "";
+        String trangthai = null;
+        String gender = cboFilter.getSelectedItem().toString().trim();
+        try {
+
+            for (int i = 0; i < nv.Filter(gender).size(); i++) {
+
+                manv = nv.Filter(gender).get(i).getManv();
+                hoten = nv.Filter(gender).get(i).getHoten();
+                ngaysinh = nv.Filter(gender).get(i).getNgaysinh();
+                quequan = nv.Filter(gender).get(i).getQuequan();
+                gioitinh = nv.Filter(gender).get(i).getGioitinh();
+                sodt = nv.Filter(gender).get(i).getSodt();
+                dantoc = nv.Filter(gender).get(i).getDantoc();
+                heso = nv.Filter(gender).get(i).getHeso();
+                luongcb = nv.Filter(gender).get(i).getLuongcb();
+                image = nv.Filter(gender).get(i).getImage();
+
+                mapb = nv.Filter(gender).get(i).getMapb();
+                macv = nv.Filter(gender).get(i).getMacv();
+                matdhv = nv.Filter(gender).get(i).getMatdhv();
+                switch (nv.Filter(gender).get(i).getTrangthai()) {
+                    case 1:
+                        trangthai = "Active";
+                        break;
+                    case 0:
+                        trangthai = "Disactive";
+                        break;
+
+                }
+                model.addRow(new Object[]{
+                    manv, hoten, ngaysinh, quequan, gioitinh, dantoc, sodt, heso, luongcb, image, mapb, macv, matdhv, trangthai
+                });
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_bntFilterActionPerformed
+
+    // Loc theo combobox
+//    public void Filter(String query) {
+//        model = (DefaultTableModel) tblNhanVien.getModel();
+//        TableRowSorter<DefaultTableModel> pesquisa = new TableRowSorter<>(model);
+//        tblNhanVien.setRowSorter(pesquisa);
+//
+//        pesquisa.setRowFilter(RowFilter.regexFilter(query));
+//    }
     /**
      * @param args the command line arguments
      */
@@ -811,11 +848,13 @@ public class Main extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntFilter;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox cboFilter;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
